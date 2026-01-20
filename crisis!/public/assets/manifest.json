@@ -1,0 +1,16 @@
+{
+  "archetypes": [
+    { "alias": "peacemaker", "src": "/assets/archetypes/peacemaker.png" },
+    { "alias": "analyst", "src": "/assets/archetypes/analyst.png" },
+    { "alias": "campaigner", "src": "/assets/archetypes/campaigner.png" }
+  ],
+    "backgrounds": [
+    { "alias": "startPage", "src": "/assets/backgrounds/startPage.png" }
+  ],
+  "optionIcons": [
+    { "alias": "icon_0", "src": "/assets/options/optionA.png" },
+    { "alias": "icon_1", "src": "/assets/options/optionB.png" },
+    { "alias": "icon_2", "src": "/assets/options/optionC.png" },
+    { "alias": "icon_3", "src": "/assets/options/optionD.png" }
+  ]
+}

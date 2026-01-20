@@ -1,4 +1,4 @@
-body {
+/*body {
     margin: 0;
     padding: 0;
     color: rgba(255, 255, 255, 0.87);
@@ -12,4 +12,78 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}*/
+body, html { margin: 0; padding: 0; overflow: hidden; font-family: 'Courier New', monospace; }
+
+/* The Game Layer */
+canvas {
+  display: block;
+  position: absolute;
+  top: 0; left: 0;
+  z-index: 0; /* Behind everything */
+}
+
+/* The UI Overlay */
+#ui-layer {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  z-index: 10; /* On top of canvas */
+  pointer-events: none; /* Let clicks pass through to Pixi if you click empty space */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* HUD */
+#hud {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  font-size: 1.2rem;
+  text-shadow: 0 0 5px red;
+}
+
+/* Dialogue Box */
+#dialogue-container {
+  background: rgba(0, 0, 0, 0.85);
+  border: 2px solid red;
+  color: white;
+  padding: 20px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  pointer-events: auto; /* Re-enable clicking for this box */
+}
+
+#speaker-name {
+  color: #ff4444;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Options Area */
+#options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: auto; /* Buttons must be clickable */
+}
+
+.option-btn {
+  background: #222;
+  color: white;
+  border: 1px solid #444;
+  padding: 15px;
+  cursor: pointer;
+  text-align: left;
+  transition: 0.2s;
+  font-family: inherit;
+}
+
+.option-btn:hover {
+  background: #ff4444;
+  color: black;
+  border-color: red;
 }
