@@ -1,20 +1,20 @@
-# Crisis! - 
+# Crisis!
 
 ## Table of Contents
 
 - [Overview](#overview)
 - [Project Structure](#project-structure)
-- [Setup Instructions](#setup-instructions)
+- [Setup](#setup)
 - [Architecture](#architecture)
 - [Adding New Features](#adding-new-features)
 - [Modifying Existing Features](#modifying-existing-features)
-- [Development Guidelines](#development-guidelines)
+- [MISC](#MISC)
 
 ##  Overview
 
 We are using **PixiJS** for rendering and **Vite** as the build tool.
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 crisis!/
@@ -79,7 +79,7 @@ crisis!/
 4. **Open your browser:**
    - Navigate to `http://localhost:8080` (or the URL shown in terminal)
 
-## 🏗️ Architecture
+## Architecture
 
 ### Game Flow
 
@@ -138,7 +138,7 @@ class PixiUIManager {
 - `showGameplayScreen(data, callbacks)` - Show main gameplay
 - `showEndScreen(score)` - Show final score
 
-## ➕ Adding New Features
+## Adding New Features
 
 ### Adding a New Crisis Scenario
 
@@ -325,7 +325,7 @@ function showArchetypeSelection() {
 - Components should be self-contained
 - Clean up resources in destroy methods
 
-### 
+### MISC
 
 1. **Memory Management**: Always destroy PixiJS objects when no longer needed
    ```javascript
