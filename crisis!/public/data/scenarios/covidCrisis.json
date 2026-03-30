@@ -1,0 +1,228 @@
+{
+  "id": "covid_2020",
+  "title": "COVID-19 Pandemic",
+  "description": "Beginning in late 2019 and escalating globally through 2020, COVID-19 forced governments to make simultaneous public-health and macroeconomic decisions under extreme uncertainty. Policymakers had to balance mobility restrictions, testing and treatment capacity, fiscal support, and vaccine strategy while preserving social trust and institutional legitimacy.",
+  "stages": [
+    {
+      "stage_id": 1,
+      "description": "Early Discovery (January 2020)",
+      "background_image": "stock_market_crash.png",
+      "questions": [
+        {
+          "id": 1,
+          "animation": "market-panic",
+          "text": "First international cases emerge across East Asia. You must decide the initial containment posture.",
+          "fun_fact": "On March 11, 2020, the World Health Organization declared COVID-19 a global pandemic.",
+          "options": [
+            {
+              "text": "Prioritize PPE procurement while keeping borders and mobility mostly unchanged.",
+              "points": 1,
+              "type": "Practical",
+              "feedback": "Normalcy persists briefly, but disease readiness is perceived as too passive once cases rise."
+            },
+            {
+              "text": "Enforce 14-day quarantine for inbound travelers and suspend non-essential international travel.",
+              "points": 2,
+              "type": "Restrictive",
+              "feedback": "Spread slows initially, but response infrastructure remains underdeveloped for later waves."
+            },
+            {
+              "text": "Restrict travel from high-risk regions and deploy scientific teams for rapid virus intelligence.",
+              "points": 3,
+              "type": "Scientific",
+              "feedback": "Early research gains improve medium-term strategy, though near-term containment remains uneven."
+            },
+            {
+              "text": "Pair targeted travel restrictions with immediate investment in national testing infrastructure.",
+              "points": 4,
+              "type": "Systems",
+              "feedback": "Testing and traceability improve quickly, strengthening decisions as community spread begins."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "stage_id": 2,
+      "description": "North American Surge (March 2020)",
+      "background_image": "stock_market_crash.png",
+      "questions": [
+        {
+          "id": 2,
+          "animation": "lockdown-grid",
+          "text": "Transmission accelerates sharply. You need a social-policy package to reduce spread.",
+          "fun_fact": "Non-pharmaceutical interventions were the primary response before vaccine deployment scaled globally.",
+          "options": [
+            {
+              "text": "Issue optional distancing and masking guidance while keeping normal operations.",
+              "points": 1,
+              "type": "Voluntary",
+              "feedback": "Economic continuity is higher short-term, but mortality and system pressure rise quickly."
+            },
+            {
+              "text": "Use quarantine enforcement for exposed individuals while recommending masks and distancing.",
+              "points": 2,
+              "type": "Middle-ground",
+              "feedback": "Outcomes improve versus no controls, but inconsistent compliance weakens containment."
+            },
+            {
+              "text": "Impose strict city-wide lockdowns with digital enforcement and broad mobility suppression.",
+              "points": 3,
+              "type": "Hard Containment",
+              "feedback": "Transmission drops, but social backlash and economic contraction intensify."
+            },
+            {
+              "text": "Close schools and non-essential businesses, enforce masking, and preserve essential movement.",
+              "points": 4,
+              "type": "Structured Containment",
+              "feedback": "Transmission is reduced with more manageable social legitimacy than maximal lockdowns."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "stage_id": 3,
+      "description": "Economic Policy Response",
+      "background_image": "stock_market_crash.png",
+      "questions": [
+        {
+          "id": 3,
+          "animation": "stimulus-surge",
+          "text": "The health crisis is now a jobs and liquidity crisis. How do you protect households and firms?",
+          "fun_fact": "Global GDP contracted sharply in 2020 while emergency fiscal measures reached historic levels in many countries.",
+          "options": [
+            {
+              "text": "Prioritize low-rate loans and business incentives to preserve corporate balance sheets.",
+              "points": 1,
+              "type": "Corporate-first",
+              "feedback": "Fiscal costs are controlled, but household demand recovers slowly and inequality widens."
+            },
+            {
+              "text": "Target hardest-hit sectors and subsidize reduced working hours.",
+              "points": 2,
+              "type": "Targeted",
+              "feedback": "Layoffs moderate, but patchwork support leaves parts of the economy exposed."
+            },
+            {
+              "text": "Deploy broad household stimulus, expanded unemployment benefits, and large-scale liquidity operations.",
+              "points": 3,
+              "type": "Keynesian",
+              "feedback": "Demand rebounds quickly, though inflation and debt pressures rise."
+            },
+            {
+              "text": "Combine strong wage replacement, sector support, self-employed grants, and quantitative easing.",
+              "points": 4,
+              "type": "Comprehensive",
+              "feedback": "The social floor holds and recovery broadens, but long-term fiscal discipline becomes harder."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "stage_id": 4,
+      "description": "Vaccination Strategy",
+      "background_image": "stock_market_crash.png",
+      "questions": [
+        {
+          "id": 4,
+          "animation": "vaccine-race",
+          "text": "Vaccines are available. You must decide access, funding, and public-health enforcement.",
+          "fun_fact": "Leading vaccine candidates reported approximately 95% efficacy in late-stage 2020 trials.",
+          "options": [
+            {
+              "text": "Secure early supply through premium contracts with significant out-of-pocket costs.",
+              "points": 1,
+              "type": "Speed-at-Cost",
+              "feedback": "Access begins quickly, but inequity undermines overall health outcomes."
+            },
+            {
+              "text": "Publicly fund high-risk groups first; allow paid access outside priority groups.",
+              "points": 2,
+              "type": "Tiered",
+              "feedback": "High-risk protection improves, but mixed access slows broad immunity."
+            },
+            {
+              "text": "Subsidize free vaccination for all citizens.",
+              "points": 3,
+              "type": "Universal",
+              "feedback": "Coverage rises strongly and trust improves, though logistics still limit speed."
+            },
+            {
+              "text": "Provide universally free vaccination with narrow mandates for critical settings.",
+              "points": 4,
+              "type": "Universal+Mandate",
+              "feedback": "Protection reaches population scale fastest, with manageable but real freedom concerns."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "stage_id": 5,
+      "description": "Reopening the New Normal",
+      "background_image": "stock_market_crash.png",
+      "questions": [
+        {
+          "id": 5,
+          "animation": "soft-landing",
+          "text": "Cases are moderating but risks remain. How do you phase out emergency policy without causing relapse?",
+          "fun_fact": "Many economies faced simultaneous goals: restoring mobility, sustaining growth, and preventing renewed health shocks.",
+          "options": [
+            {
+              "text": "Remove major fiscal and monetary supports once cases fall below a threshold.",
+              "points": 1,
+              "type": "Fast Exit",
+              "feedback": "Policy space improves, but fragile firms and households face abrupt adjustment pressure."
+            },
+            {
+              "text": "Reopen schools and businesses at mass vaccination milestones.",
+              "points": 2,
+              "type": "Milestone-led",
+              "feedback": "Normalcy returns quickly, but resilience to new variants remains uneven."
+            },
+            {
+              "text": "Maintain closures and strong precautions until formal pandemic-end declaration.",
+              "points": 3,
+              "type": "Safety-first",
+              "feedback": "Health risk declines, but delayed reopening strains education, livelihoods, and social cohesion."
+            },
+            {
+              "text": "Phase reopening using both case thresholds and vaccination coverage while tapering supports gradually.",
+              "points": 4,
+              "type": "Adaptive",
+              "feedback": "The transition is steadier, balancing health protection with institutional and economic recovery."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "result_bands": [
+    {
+      "min": 5,
+      "max": 9,
+      "title": "Fragile Outcome",
+      "summary": "Cases remain elevated, vaccination is uneven, and economic stability is vulnerable to recurring disruptions."
+    },
+    {
+      "min": 10,
+      "max": 13,
+      "title": "Strained but Recoverable",
+      "summary": "Core systems hold and unemployment is contained, but equity and long-term resilience remain unsettled."
+    },
+    {
+      "min": 14,
+      "max": 17,
+      "title": "Stable with Trade-offs",
+      "summary": "Vaccination and policy support stabilize the system, though inflation, debt, and sector distortions persist."
+    },
+    {
+      "min": 18,
+      "max": 20,
+      "title": "Strategic Advantage",
+      "summary": "Public-health control and adaptive policy sequencing reinforce trust, recovery, and institutional durability."
+    }
+  ]
+}

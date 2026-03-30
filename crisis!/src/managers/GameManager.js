@@ -1,3 +1,5 @@
+import { localizeScenarioData, t } from "../content/i18n.js";
+
 class GameManager {
   constructor() {
     this.crisisIndex = []; 
@@ -44,7 +46,8 @@ class GameManager {
       
       if (!response.ok) throw new Error(`Failed to load index: ${response.status}`);
       
-      this.crisisIndex = await response.json();
+      const crisisIndexRaw = await response.json();
+      this.crisisIndex = localizeScenarioData(crisisIndexRaw);
       this.isLoaded = true;
       console.log("Crisis Index Loaded:", this.crisisIndex);
       return true;
@@ -81,7 +84,8 @@ class GameManager {
       
       if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
 
-      const data = await response.json();
+      const raw = await response.json();
+      const data = localizeScenarioData(raw);
 
       this.currentCrisisData = data;
       this.stages = data.stages;
@@ -149,14 +153,52 @@ class GameManager {
   calculateResult() {
     const s = this.score;
 
+    const bands = this.currentCrisisData?.result_bands;
+    if (Array.isArray(bands) && bands.length > 0) {
+      const matchedBand = bands.find((band) => s >= band.min && s <= band.max);
+      if (matchedBand) {
+        return {
+          title: matchedBand.title || "Outcome",
+          summary: matchedBand.summary || t("game.outcomes.failure"),
+          simpleSummary: Array.isArray(matchedBand.simple_summary)
+            ? matchedBand.simple_summary
+            : [],
+          bandLabel:
+            typeof matchedBand.min === "number" && typeof matchedBand.max === "number"
+              ? `${matchedBand.min}-${matchedBand.max}`
+              : "",
+        };
+      }
+    }
+
     if (s >= 65) {
-      return "LEGENDARY SUCCESS: Your swift actions saved the economy and boosted global trust.";
+      return {
+        title: "Legendary Success",
+        summary: t("game.outcomes.legendary"),
+        simpleSummary: [],
+        bandLabel: "",
+      };
     } else if (s >= 45) {
-      return "STABLE RECOVERY: You avoided disaster, though public debt has increased.";
+      return {
+        title: "Stable Recovery",
+        summary: t("game.outcomes.stable"),
+        simpleSummary: [],
+        bandLabel: "",
+      };
     } else if (s >= 25) {
-      return "STRAINED VICTORY: The crisis was averted, but recovery will be painful and slow.";
+      return {
+        title: "Strained Victory",
+        summary: t("game.outcomes.strained"),
+        simpleSummary: [],
+        bandLabel: "",
+      };
     } else {
-      return "CRITICAL FAILURE: Measures were too little, too late. The economy is in freefall.";
+      return {
+        title: "Critical Failure",
+        summary: t("game.outcomes.failure"),
+        simpleSummary: [],
+        bandLabel: "",
+      };
     }
   }
 }

@@ -1,165 +1,165 @@
 {
   "id": "financial_2008",
-  "title": "Global Financial Meltdown",
-  "description": "The 2008 Financial Crisis happened when the U.S. housing market collapsed after many years of rising home prices and risky lending. Banks gave many people mortgages (loans used to buy homes) that they could not afford, and these loans were turned into complex financial products (investments created by banks that are bought and sold to make money). When home prices fell, many people could not repay their mortgages, causing large banks to fail and panic to spread worldwide. Because banks were closely connected, the problems quickly spread through the economy and led to a recession (a period when businesses slow down, many people lose jobs, and the economy shrinks). Governments stepped in with large bailouts to stabilize the financial system and reduce economic damage.",
+  "title": "i18n:scenarios.asian_1997.title",
+  "description": "i18n:scenarios.asian_1997.description",
   "stages": [
     {
       "stage_id": 1,
-      "description": "Early Credit Market Stress (Mid-2007)",
+      "description": "i18n:scenarios.asian_1997.stages.1.description",
       "background_image": "stock_market_crash.png",
       "questions": [
         {
           "id": 1,
-          "text": "Interbank lending rates rise unexpectedly. Reports indicate that repo lenders are questioning the value of mortgage-backed securities used as collateral.",
-          "fun_fact": "In August 2007, BNP Paribas froze three funds after determining subprime assets could not be reliably valued—one of the first visible signals of systemic stress.",
+          "text": "i18n:scenarios.asian_1997.stages.1.questions.1.text",
+          "fun_fact": "i18n:scenarios.asian_1997.stages.1.questions.1.fun_fact",
           "options": [
             {
-              "text": "Issue a public statement affirming confidence in financial markets.",
+              "text": "i18n:scenarios.asian_1997.stages.1.questions.1.options.1.text",
               "points": 1,
-              "type": "Passive",
-              "feedback": "Markets hear reassurance, but lenders remain cautious. Without new information, uncertainty continues to grow quietly beneath the surface."
+              "type": "i18n:scenarios.asian_1997.stages.1.questions.1.options.1.type",
+              "feedback": "i18n:scenarios.asian_1997.stages.1.questions.1.options.1.feedback"
             },
             {
-              "text": "Request additional reporting from major banks on exposure.",
+              "text": "i18n:scenarios.asian_1997.stages.1.questions.1.options.2.text",
               "points": 2,
-              "type": "Investigative",
-              "feedback": "More data becomes available, but responses are slow. Policymakers understand the problem better, even as conditions continue to worsen."
+              "type": "i18n:scenarios.asian_1997.stages.1.questions.1.options.2.type",
+              "feedback": "i18n:scenarios.asian_1997.stages.1.questions.1.options.2.feedback"
             },
             {
-              "text": "Coordinate with central bank to monitor money markets daily.",
+              "text": "i18n:scenarios.asian_1997.stages.1.questions.1.options.3.text",
               "points": 3,
-              "type": "Active",
-              "feedback": "Daily monitoring reveals rising stress in short-term funding markets. Early warnings allow preparation, but no direct relief is provided yet."
+              "type": "i18n:scenarios.asian_1997.stages.1.questions.1.options.3.type",
+              "feedback": "i18n:scenarios.asian_1997.stages.1.questions.1.options.3.feedback"
             },
             {
-              "text": "Prepare contingency legislation for liquidity support.",
+              "text": "i18n:scenarios.asian_1997.stages.1.questions.1.options.4.text",
               "points": 4,
-              "type": "Strategic",
-              "feedback": "Financial institutions gain confidence that support is possible if needed. Markets remain tense, but panic is delayed."
+              "type": "i18n:scenarios.asian_1997.stages.1.questions.1.options.4.type",
+              "feedback": "i18n:scenarios.asian_1997.stages.1.questions.1.options.4.feedback"
             }
           ]
         },
         {
           "id": 2,
-          "text": "Wholesale Funding Freeze: Several banks report difficulty rolling over short-term debt. Asset-backed commercial paper issuance declines sharply.",
-          "fun_fact": "Northern Rock relied heavily on wholesale funding; when markets froze, it could not refinance despite being solvent on paper.",
+          "text": "i18n:scenarios.asian_1997.stages.1.questions.2.text",
+          "fun_fact": "i18n:scenarios.asian_1997.stages.1.questions.2.fun_fact",
           "options": [
             {
-              "text": "Allow market consolidation to proceed without intervention.",
+              "text": "i18n:scenarios.asian_1997.stages.1.questions.2.options.1.text",
               "points": 1,
-              "type": "Laissez-faire",
-              "feedback": "Lending slows sharply as institutions protect themselves. Some banks struggle to meet short-term cash needs despite holding long-term assets."
+              "type": "i18n:scenarios.asian_1997.stages.1.questions.2.options.1.type",
+              "feedback": "i18n:scenarios.asian_1997.stages.1.questions.2.options.1.feedback"
             },
             {
-              "text": "Offer temporary regulatory flexibility for banks under stress.",
+              "text": "i18n:scenarios.asian_1997.stages.1.questions.2.options.2.text",
               "points": 2,
-              "type": "Moderate",
-              "feedback": "Temporary rule changes help some institutions survive short-term pressure. However, lenders remain reluctant to provide new funding."
+              "type": "i18n:scenarios.asian_1997.stages.1.questions.2.options.2.type",
+              "feedback": "i18n:scenarios.asian_1997.stages.1.questions.2.options.2.feedback"
             },
             {
-              "text": "Establish a targeted liquidity backstop for solvent institutions.",
+              "text": "i18n:scenarios.asian_1997.stages.1.questions.2.options.3.text",
               "points": 3,
-              "type": "Targeted",
-              "feedback": "Solvent institutions regain access to short-term funding. Stress eases unevenly across the financial system."
+              "type": "i18n:scenarios.asian_1997.stages.1.questions.2.options.3.type",
+              "feedback": "i18n:scenarios.asian_1997.stages.1.questions.2.options.3.feedback"
             },
             {
-              "text": "Announce a broad guarantee for key wholesale funding instruments.",
+              "text": "i18n:scenarios.asian_1997.stages.1.questions.2.options.4.text",
               "points": 4,
-              "type": "Aggressive",
-              "feedback": "Lending resumes quickly as confidence returns. Public exposure increases, but immediate market freezing is avoided."
+              "type": "i18n:scenarios.asian_1997.stages.1.questions.2.options.4.type",
+              "feedback": "i18n:scenarios.asian_1997.stages.1.questions.2.options.4.feedback"
             }
           ]
         },
         {
           "id": 3,
-          "text": "Economic output contracts. Tax revenues fall while unemployment claims rise. How do you handle Fiscal Policy?",
-          "fun_fact": "Many governments adopted 'slightly expansionary' budgets—for instance, Germany introduced a subsidy of €2,500 if consumers bought a new car while scrapping an old one.",
+          "text": "i18n:scenarios.asian_1997.stages.1.questions.3.text",
+          "fun_fact": "i18n:scenarios.asian_1997.stages.1.questions.3.fun_fact",
           "options": [
             {
-              "text": "Commit to fiscal restraint to preserve long-term sustainability.",
+              "text": "i18n:scenarios.asian_1997.stages.1.questions.3.options.1.text",
               "points": 1,
-              "type": "Conservative",
-              "feedback": "Government spending stays tight despite economic slowdown. Budget balances improve long-term, but unemployment rises faster."
+              "type": "i18n:scenarios.asian_1997.stages.1.questions.3.options.1.type",
+              "feedback": "i18n:scenarios.asian_1997.stages.1.questions.3.options.1.feedback"
             },
             {
-              "text": "Allow automatic stabilizers to operate without new measures.",
+              "text": "i18n:scenarios.asian_1997.stages.1.questions.3.options.2.text",
               "points": 2,
-              "type": "Passive",
-              "feedback": "Social support increases automatically as the economy weakens. The downturn slows, but recovery remains uncertain."
+              "type": "i18n:scenarios.asian_1997.stages.1.questions.3.options.2.type",
+              "feedback": "i18n:scenarios.asian_1997.stages.1.questions.3.options.2.feedback"
             },
             {
-              "text": "Introduce a time-limited fiscal stimulus focused on households.",
+              "text": "i18n:scenarios.asian_1997.stages.1.questions.3.options.3.text",
               "points": 3,
-              "type": "Targeted",
-              "feedback": "Household spending stabilizes as temporary support reaches consumers. The economy stops shrinking, but growth remains modest."
+              "type": "i18n:scenarios.asian_1997.stages.1.questions.3.options.3.type",
+              "feedback": "i18n:scenarios.asian_1997.stages.1.questions.3.options.3.feedback"
             },
             {
-              "text": "Launch a large, multi-year counter-cyclical stimulus program.",
+              "text": "i18n:scenarios.asian_1997.stages.1.questions.3.options.4.text",
               "points": 4,
-              "type": "Stimulative",
-              "feedback": "Demand rises and job losses slow significantly. Public debt increases, but economic recovery begins earlier."
+              "type": "i18n:scenarios.asian_1997.stages.1.questions.3.options.4.type",
+              "feedback": "i18n:scenarios.asian_1997.stages.1.questions.3.options.4.feedback"
             }
           ]
         },
         {
           "id": 4,
-          "text": "G20 partners debate coordinated stimulus. Some countries push for fiscal restraint due to debt concerns.",
-          "fun_fact": "International coordination faced a classic collective-action problem: benefits were shared, costs were national.",
+          "text": "i18n:scenarios.asian_1997.stages.1.questions.4.text",
+          "fun_fact": "i18n:scenarios.asian_1997.stages.1.questions.4.fun_fact",
           "options": [
             {
-              "text": "Domestic policies move forward alone.",
+              "text": "i18n:scenarios.asian_1997.stages.1.questions.4.options.1.text",
               "points": 1,
-              "type": "Isolationist",
-              "feedback": "Global recovery is slower, limiting export growth as trade partners struggle."
+              "type": "i18n:scenarios.asian_1997.stages.1.questions.4.options.1.type",
+              "feedback": "i18n:scenarios.asian_1997.stages.1.questions.4.options.1.feedback"
             },
             {
-              "text": "Share information but act independently.",
+              "text": "i18n:scenarios.asian_1997.stages.1.questions.4.options.2.text",
               "points": 2,
-              "type": "Cooperative",
-              "feedback": "Recovery improves gradually as global conditions stabilize, though friction remains."
+              "type": "i18n:scenarios.asian_1997.stages.1.questions.4.options.2.type",
+              "feedback": "i18n:scenarios.asian_1997.stages.1.questions.4.options.2.feedback"
             },
             {
-              "text": "Take simultaneous actions to strengthen overall impact.",
+              "text": "i18n:scenarios.asian_1997.stages.1.questions.4.options.3.text",
               "points": 3,
-              "type": "Coordinated",
-              "feedback": "Trade and investment recover more smoothly as markets see a unified front."
+              "type": "i18n:scenarios.asian_1997.stages.1.questions.4.options.3.type",
+              "feedback": "i18n:scenarios.asian_1997.stages.1.questions.4.options.3.feedback"
             },
             {
-              "text": "Combine efforts to restore confidence across borders.",
+              "text": "i18n:scenarios.asian_1997.stages.1.questions.4.options.4.text",
               "points": 4,
-              "type": "Globalist",
-              "feedback": "The global economy stabilizes faster than expected due to massive synchronized stimulus."
+              "type": "i18n:scenarios.asian_1997.stages.1.questions.4.options.4.type",
+              "feedback": "i18n:scenarios.asian_1997.stages.1.questions.4.options.4.feedback"
             }
           ]
         },
         {
           "id": 5,
-          "text": "Long-Term Response: Markets stabilize, but public debt levels have risen. Structural vulnerabilities remain.",
-          "fun_fact": "The crisis revealed that instruments were not inherently harmful—misaligned incentives and opacity amplified risk.",
+          "text": "i18n:scenarios.asian_1997.stages.1.questions.5.text",
+          "fun_fact": "i18n:scenarios.asian_1997.stages.1.questions.5.fun_fact",
           "options": [
             {
-              "text": "Return quickly to pre-crisis regulatory frameworks.",
+              "text": "i18n:scenarios.asian_1997.stages.1.questions.5.options.1.text",
               "points": 1,
-              "type": "Traditional",
-              "feedback": "Markets regain familiar structures. Some risks remain hidden, leaving the system vulnerable to future shocks."
+              "type": "i18n:scenarios.asian_1997.stages.1.questions.5.options.1.type",
+              "feedback": "i18n:scenarios.asian_1997.stages.1.questions.5.options.1.feedback"
             },
             {
-              "text": "Make incremental regulatory adjustments.",
+              "text": "i18n:scenarios.asian_1997.stages.1.questions.5.options.2.text",
               "points": 2,
-              "type": "Moderate",
-              "feedback": "Certain weaknesses are addressed, but gaps remain. Stability improves slightly."
+              "type": "i18n:scenarios.asian_1997.stages.1.questions.5.options.2.type",
+              "feedback": "i18n:scenarios.asian_1997.stages.1.questions.5.options.2.feedback"
             },
             {
-              "text": "Reform securitization, repo collateral standards, and oversight.",
+              "text": "i18n:scenarios.asian_1997.stages.1.questions.5.options.3.text",
               "points": 3,
-              "type": "Reformist",
-              "feedback": "Financial markets become more transparent and resilient. Growth continues with fewer sudden disruptions."
+              "type": "i18n:scenarios.asian_1997.stages.1.questions.5.options.3.type",
+              "feedback": "i18n:scenarios.asian_1997.stages.1.questions.5.options.3.feedback"
             },
             {
-              "text": "Redesign financial architecture with macro-prudential tools.",
+              "text": "i18n:scenarios.asian_1997.stages.1.questions.5.options.4.text",
               "points": 4,
-              "type": "Visionary",
-              "feedback": "New safeguards reduce the chance of large-scale crises. Innovation slows, but long-term stability improves."
+              "type": "i18n:scenarios.asian_1997.stages.1.questions.5.options.4.type",
+              "feedback": "i18n:scenarios.asian_1997.stages.1.questions.5.options.4.feedback"
             }
           ]
         }

@@ -2,17 +2,17 @@
   {
     "id": "financial_2008",
     "title": "Global Financial Meltdown",
-    "summary": "Navigate the collapse of the banking sector.",
+    "summary": "Navigate credit stress, liquidity freezes, and recovery policy trade-offs.",
     "thumbnail": "icon.png",
     "file_path": "/data/scenarios/2008crisis.json",
     "compatible_archetypes": ["analyst", "peacemaker"] 
   },
   {
-    "id": "asian_1997",
-    "title": "Lorem ipsum",
-    "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis erat malesuada, viverra sem id, venenatis magna. Donec vestibulum quam sit amet sapien convallis porta. ",
+    "id": "covid_2020",
+    "title": "COVID-19 Pandemic",
+    "summary": "Balance disease control, economic continuity, and long-term institutional resilience.",
     "thumbnail": "icon2.png",
-    "file_path": "/data/scenarios/asianCrisis.json",
+    "file_path": "/data/scenarios/covidCrisis.json",
     "compatible_archetypes": ["analyst", "campaigner"]
   }
 ]

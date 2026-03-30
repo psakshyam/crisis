@@ -1,7 +1,7 @@
 {
   "id": "financial_2008",
   "title": "Global Financial Meltdown",
-  "description": "The 2008 Financial Crisis happened when the U.S. housing market collapsed after many years of rising home prices and risky lending. Banks gave many people mortgages (loans used to buy homes) that they could not afford, and these loans were turned into complex financial products (investments created by banks that are bought and sold to make money). When home prices fell, many people could not repay their mortgages, causing large banks to fail and panic to spread worldwide. Because banks were closely connected, the problems quickly spread through the economy and led to a recession (a period when businesses slow down, many people lose jobs, and the economy shrinks). Governments stepped in with large bailouts to stabilize the financial system and reduce economic damage.",
+  "description": "The 2008 Financial Crisis happened when the U.S. housing market collapsed after many years of rising home prices and risky lending. Banks gave many people mortgages that they could not afford, and these loans were turned into complex financial products. When home prices fell, many people could not repay their mortgages, causing large banks to fail and panic to spread worldwide. Because banks were closely connected, the problems quickly spread through the economy and led to a recession. Governments stepped in with large bailouts to stabilize the financial system and reduce economic damage.\n\nTimeline: Sept-Oct 2008. Place: U.S., Europe, and Asia. Starting in summer 2007, worsening conditions in U.S. housing and home-finance sectors escalated financial distress.\n\nMany Americans blamed people who took on too much debt and banks that made risky loans for financial institution and market failures.\n\nAs long as domestic consumption influences domestic output, this can reduce output volatility. Financial openness may improve borrowing access during crises, but high capital-account openness can increase deep-recession risk due to volatile short-term inflows. Emerging and developing economies should be cautious when opening capital accounts and should use active macroeconomic management to prevent large current-account imbalances.",
   "stages": [
     {
       "stage_id": 1,
@@ -10,159 +10,238 @@
       "questions": [
         {
           "id": 1,
+          "animation": "bank-run",
           "text": "Interbank lending rates rise unexpectedly. Reports indicate that repo lenders are questioning the value of mortgage-backed securities used as collateral.",
-          "fun_fact": "In August 2007, BNP Paribas froze three funds after determining subprime assets could not be reliably valued—one of the first visible signals of systemic stress.",
+          "fun_fact": "In August 2007, BNP Paribas froze three funds after determining subprime assets could not be reliably valued, one of the first visible signals of systemic stress.",
           "options": [
             {
               "text": "Issue a public statement affirming confidence in financial markets.",
               "points": 1,
-              "type": "Passive",
+              "type": "Option A",
               "feedback": "Markets hear reassurance, but lenders remain cautious. Without new information, uncertainty continues to grow quietly beneath the surface."
             },
             {
-              "text": "Request additional reporting from major banks on exposure.",
+              "text": "Request additional reporting from major banks on short-term funding exposure.",
               "points": 2,
-              "type": "Investigative",
+              "type": "Option B",
               "feedback": "More data becomes available, but responses are slow. Policymakers understand the problem better, even as conditions continue to worsen."
             },
             {
-              "text": "Coordinate with central bank to monitor money markets daily.",
+              "text": "Coordinate with the central bank to monitor repo and money markets daily.",
               "points": 3,
-              "type": "Active",
+              "type": "Option C",
               "feedback": "Daily monitoring reveals rising stress in short-term funding markets. Early warnings allow preparation, but no direct relief is provided yet."
             },
             {
-              "text": "Prepare contingency legislation for liquidity support.",
+              "text": "Prepare contingency legislation for liquidity support and guarantees.",
               "points": 4,
-              "type": "Strategic",
+              "type": "Option D",
               "feedback": "Financial institutions gain confidence that support is possible if needed. Markets remain tense, but panic is delayed."
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "stage_id": 2,
+      "description": "Wholesale Funding Freeze (Early 2008)",
+      "background_image": "stock_market_crash.png",
+      "questions": [
         {
           "id": 2,
-          "text": "Wholesale Funding Freeze: Several banks report difficulty rolling over short-term debt. Asset-backed commercial paper issuance declines sharply.",
+          "animation": "bank-run",
+          "text": "Several banks report difficulty rolling over short-term debt. Asset-backed commercial paper issuance declines sharply.",
           "fun_fact": "Northern Rock relied heavily on wholesale funding; when markets froze, it could not refinance despite being solvent on paper.",
           "options": [
             {
               "text": "Allow market consolidation to proceed without intervention.",
               "points": 1,
-              "type": "Laissez-faire",
+              "type": "Option A",
               "feedback": "Lending slows sharply as institutions protect themselves. Some banks struggle to meet short-term cash needs despite holding long-term assets."
             },
             {
               "text": "Offer temporary regulatory flexibility for banks under stress.",
               "points": 2,
-              "type": "Moderate",
+              "type": "Option B",
               "feedback": "Temporary rule changes help some institutions survive short-term pressure. However, lenders remain reluctant to provide new funding."
             },
             {
               "text": "Establish a targeted liquidity backstop for solvent institutions.",
               "points": 3,
-              "type": "Targeted",
+              "type": "Option C",
               "feedback": "Solvent institutions regain access to short-term funding. Stress eases unevenly across the financial system."
             },
             {
               "text": "Announce a broad guarantee for key wholesale funding instruments.",
               "points": 4,
-              "type": "Aggressive",
+              "type": "Option D",
               "feedback": "Lending resumes quickly as confidence returns. Public exposure increases, but immediate market freezing is avoided."
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "stage_id": 3,
+      "description": "Fiscal Policy Debate (Late 2008)",
+      "background_image": "stock_market_crash.png",
+      "questions": [
         {
           "id": 3,
-          "text": "Economic output contracts. Tax revenues fall while unemployment claims rise. How do you handle Fiscal Policy?",
-          "fun_fact": "Many governments adopted 'slightly expansionary' budgets—for instance, Germany introduced a subsidy of €2,500 if consumers bought a new car while scrapping an old one.",
+          "animation": "policy-shock",
+          "text": "Economic output contracts. Tax revenues fall while unemployment claims rise.",
+          "fun_fact": "Many governments adopted slightly expansionary budgets. For instance, Germany introduced a subsidy of EUR 2,500 if consumers bought a new car while scrapping an old one bought less than nine years prior.",
           "options": [
             {
-              "text": "Commit to fiscal restraint to preserve long-term sustainability.",
+              "text": "Commit to fiscal restraint to preserve long-term debt sustainability.",
               "points": 1,
-              "type": "Conservative",
+              "type": "Option A",
               "feedback": "Government spending stays tight despite economic slowdown. Budget balances improve long-term, but unemployment rises faster."
             },
             {
               "text": "Allow automatic stabilizers to operate without new measures.",
               "points": 2,
-              "type": "Passive",
+              "type": "Option B",
               "feedback": "Social support increases automatically as the economy weakens. The downturn slows, but recovery remains uncertain."
             },
             {
               "text": "Introduce a time-limited fiscal stimulus focused on households.",
               "points": 3,
-              "type": "Targeted",
+              "type": "Option C",
               "feedback": "Household spending stabilizes as temporary support reaches consumers. The economy stops shrinking, but growth remains modest."
             },
             {
               "text": "Launch a large, multi-year counter-cyclical stimulus program.",
               "points": 4,
-              "type": "Stimulative",
+              "type": "Option D",
               "feedback": "Demand rises and job losses slow significantly. Public debt increases, but economic recovery begins earlier."
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "stage_id": 4,
+      "description": "International Coordination (2009)",
+      "background_image": "stock_market_crash.png",
+      "questions": [
         {
           "id": 4,
+          "animation": "policy-shock",
           "text": "G20 partners debate coordinated stimulus. Some countries push for fiscal restraint due to debt concerns.",
           "fun_fact": "International coordination faced a classic collective-action problem: benefits were shared, costs were national.",
           "options": [
             {
-              "text": "Domestic policies move forward alone.",
+              "text": "Domestic policies move forward alone. Global recovery is slower, limiting export growth.",
               "points": 1,
-              "type": "Isolationist",
-              "feedback": "Global recovery is slower, limiting export growth as trade partners struggle."
+              "type": "Option A",
+              "feedback": "Lending slows sharply as institutions protect themselves. Some banks struggle to meet short-term cash needs despite holding long-term assets."
             },
             {
-              "text": "Share information but act independently.",
+              "text": "Governments share information but act independently. Recovery improves gradually as global conditions stabilize.",
               "points": 2,
-              "type": "Cooperative",
-              "feedback": "Recovery improves gradually as global conditions stabilize, though friction remains."
+              "type": "Option B",
+              "feedback": "Temporary rule changes help some institutions survive short-term pressure. However, lenders remain reluctant to provide new funding."
             },
             {
-              "text": "Take simultaneous actions to strengthen overall impact.",
+              "text": "Simultaneous actions strengthen overall impact. Trade and investment recover more smoothly.",
               "points": 3,
-              "type": "Coordinated",
-              "feedback": "Trade and investment recover more smoothly as markets see a unified front."
+              "type": "Option C",
+              "feedback": "Solvent institutions regain access to short-term funding. Stress eases unevenly across the financial system."
             },
             {
-              "text": "Combine efforts to restore confidence across borders.",
+              "text": "Combined efforts restore confidence across borders. The global economy stabilizes faster than expected.",
               "points": 4,
-              "type": "Globalist",
-              "feedback": "The global economy stabilizes faster than expected due to massive synchronized stimulus."
+              "type": "Option D",
+              "feedback": "Lending resumes quickly as confidence returns. Public exposure increases, but immediate market freezing is avoided."
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "stage_id": 5,
+      "description": "Long-Term Institutional Response",
+      "background_image": "stock_market_crash.png",
+      "questions": [
         {
           "id": 5,
-          "text": "Long-Term Response: Markets stabilize, but public debt levels have risen. Structural vulnerabilities remain.",
-          "fun_fact": "The crisis revealed that instruments were not inherently harmful—misaligned incentives and opacity amplified risk.",
+          "animation": "soft-landing",
+          "text": "Markets stabilize, but public debt levels have risen. Structural vulnerabilities remain.",
+          "fun_fact": "The crisis revealed that instruments were not inherently harmful; misaligned incentives and opacity amplified risk.",
           "options": [
             {
               "text": "Return quickly to pre-crisis regulatory frameworks.",
               "points": 1,
-              "type": "Traditional",
+              "type": "Option A",
               "feedback": "Markets regain familiar structures. Some risks remain hidden, leaving the system vulnerable to future shocks."
             },
             {
               "text": "Make incremental regulatory adjustments.",
               "points": 2,
-              "type": "Moderate",
+              "type": "Option B",
               "feedback": "Certain weaknesses are addressed, but gaps remain. Stability improves slightly."
             },
             {
               "text": "Reform securitization, repo collateral standards, and oversight.",
               "points": 3,
-              "type": "Reformist",
+              "type": "Option C",
               "feedback": "Financial markets become more transparent and resilient. Growth continues with fewer sudden disruptions."
             },
             {
               "text": "Redesign financial architecture with macro-prudential tools.",
               "points": 4,
-              "type": "Visionary",
+              "type": "Option D",
               "feedback": "New safeguards reduce the chance of large-scale crises. Innovation slows, but long-term stability improves."
             }
           ]
         }
+      ]
+    }
+  ],
+  "result_bands": [
+    {
+      "min": 5,
+      "max": 9,
+      "title": "Scenario 1: Fragile / Crisis Escalates",
+      "summary": "Liquidity support arrives late or unevenly. Credit remains constrained. The economy recovers slowly with repeated shocks, and institutions remain distrustful.",
+      "simple_summary": [
+        "Lots of uncertainty",
+        "Problems take a long time to fix",
+        "People worry about the future"
+      ]
+    },
+    {
+      "min": 10,
+      "max": 13,
+      "title": "Scenario 2: Strained but Recoverable",
+      "summary": "Automatic stabilizers and limited intervention prevent collapse. Recovery depends on external demand, and fiscal space narrows but remains manageable.",
+      "simple_summary": [
+        "Careful progress",
+        "Mixed results",
+        "Hopeful but still watchful"
+      ]
+    },
+    {
+      "min": 14,
+      "max": 17,
+      "title": "Scenario 3: Stable with Trade-offs",
+      "summary": "Liquidity and fiscal measures stabilize demand. Public debt increases but growth resumes, and financial regulation becomes more robust.",
+      "simple_summary": [
+        "Balanced",
+        "More confidence",
+        "Lessons learned"
+      ]
+    },
+    {
+      "min": 18,
+      "max": 20,
+      "title": "Scenario 4: Strong / Strategic Advantage",
+      "summary": "Early intervention prevents prolonged contraction. Employment recovers faster, credibility improves, and institutions emerge more resilient.",
+      "simple_summary": [
+        "Confidence",
+        "Security",
+        "Ready for challenges"
       ]
     }
   ]
