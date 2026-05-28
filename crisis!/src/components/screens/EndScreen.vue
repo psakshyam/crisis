@@ -2,26 +2,12 @@
 import { computed } from "vue";
 
 const props = defineProps({
-  title: {
-    type: String,
-    required: true,
-  },
-  finalScoreLabel: {
-    type: String,
-    required: true,
-  },
-  replayLabel: {
-    type: String,
-    required: true,
-  },
-  finalScore: {
-    type: Number,
-    required: true,
-  },
-  finalResult: {
-    type: Object,
-    required: true,
-  },
+  title: { type: String, required: true },
+  finalScoreLabel: { type: String, required: true },
+  replayLabel: { type: String, required: true },
+  finalScore: { type: Number, required: true },
+  finalResult: { type: Object, required: true },
+  inRoom: { type: Boolean, default: false },
 });
 
 const emit = defineEmits(["replay"]);
@@ -49,6 +35,7 @@ const cleanedResultTitle = computed(() => {
       </ul>
     </article>
 
+    <p v-if="inRoom" class="room-submitted-note">Results submitted to your teacher.</p>
     <button class="cta" @click="emit('replay')">{{ replayLabel }}</button>
   </section>
 </template>

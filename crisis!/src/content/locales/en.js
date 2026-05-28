@@ -13,10 +13,6 @@ export const en = {
     start: {
       cta: "Start Round",
     },
-    archetype: {
-      title: "Select Your Archetype",
-      choose: "Choose",
-    },
     crisis: {
       title: "Select a Crisis Scenario",
       play: "Play",
@@ -25,8 +21,6 @@ export const en = {
     gameplay: {
       score: "Score",
       stage: "Stage",
-      archetype: "Archetype",
-      none: "none",
     },
     end: {
       title: "Round Result",

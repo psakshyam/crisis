@@ -1,15 +1,13 @@
 <script setup>
-import { computed } from "vue";
+import { computed, ref, onMounted } from "vue";
 
 const props = defineProps({
-  question: {
-    type: Object,
-    required: true,
-  },
-  getOptionImage: {
-    type: Function,
-    required: true,
-  },
+  question: { type: Object, required: true },
+  getOptionImage: { type: Function, required: true },
+  roomMode: { type: String, default: null },
+  waitingForTeacher: { type: Boolean, default: false },
+  isSimplified: { type: Boolean, default: false },
+  characterId: { type: String, default: null },
 });
 
 const emit = defineEmits(["choose"]);
@@ -17,6 +15,30 @@ const emit = defineEmits(["choose"]);
 const animationPreset = computed(() => {
   return props.question.animation || props.question.visual?.animation || "default";
 });
+
+// Resolve character-variant text, falling back to default when simplified or no variant.
+function resolveText(obj, defaultField, charField) {
+  const basic = obj[defaultField] || '';
+  if (props.isSimplified || !props.characterId) return basic;
+  return obj[charField]?.[props.characterId] || basic;
+}
+
+const questionText = computed(() =>
+  resolveText(props.question, 'text', 'character_text')
+);
+
+const questionStartTime = ref(Date.now());
+onMounted(() => {
+  questionStartTime.value = Date.now();
+});
+
+function handleChoice(opt) {
+  const timeSpentSeconds = Math.round((Date.now() - questionStartTime.value) / 1000);
+  const maxPoints = Math.max(...(props.question.options || []).map(o => o.points ?? 0));
+  // Attach resolved feedback so App.vue can use it for the OutcomeSlide
+  const feedback = resolveText(opt, 'feedback', 'character_feedback');
+  emit("choose", { ...opt, feedback, timeSpentSeconds, maxPoints });
+}
 </script>
 
 <template>
@@ -27,24 +49,30 @@ const animationPreset = computed(() => {
       <span class="scene-shape scene-shape-c"></span>
     </div>
 
-    <div class="gameplay-question-wrap">
-      <h2 class="question">{{ question.text }}</h2>
+    <!-- Teacher-paced: waiting overlay -->
+    <div v-if="waitingForTeacher" class="waiting-overlay">
+      <p class="waiting-text">Waiting for teacher…</p>
     </div>
 
-    <div class="option-dock">
+    <div class="gameplay-question-wrap">
+      <h2 class="question">{{ questionText }}</h2>
+    </div>
+
+    <div class="option-dock" :class="{ 'option-dock--disabled': waitingForTeacher }">
       <div class="option-grid option-grid-docked">
         <button
           class="option-card"
           v-for="(opt, idx) in question.options"
           :key="`${question.id}-${idx}`"
-          @click="emit('choose', opt)"
+          :disabled="waitingForTeacher"
+          @click="handleChoice(opt)"
         >
           <img
             v-if="getOptionImage(idx)"
             :src="getOptionImage(idx)"
             :alt="`Option ${idx + 1}`"
           />
-          <p>{{ opt.text }}</p>
+          <p>{{ resolveText(opt, 'text', 'character_text') }}</p>
         </button>
       </div>
     </div>
