@@ -33,8 +33,9 @@ const currentScore = ref(0);
 const outcomeSlide = ref({ feedback: "", animation: "default" });
 const pendingAction = ref(null);
 
-// ── Simplified mode ────────────────────────────────────────────────────────
-const isSimplified = ref(false);
+// ── Character mode (room) ──────────────────────────────────────────────────
+// false = neutral plain text; true = character-voice text (same as solo)
+const characterMode = ref(false);
 
 // ── Room state ─────────────────────────────────────────────────────────────
 const roomCode = ref("");
@@ -69,9 +70,13 @@ const gameplayKey = computed(() => {
 const inRoom = computed(() => !!roomCode.value);
 const allScenarios = computed(() => gameManager.crisisIndex);
 const teacherStages = computed(() => (isTeacher.value ? gameManager.stages : []));
-// Reactive wrapper so the template re-reads when gameManager state changes
-const selectedCharacter = computed(() => gameManager.getCharacter());
-const activeCharacterId = computed(() => gameManager.selectedCharacterId);
+const selectedCharacter = ref(null);
+const activeCharacterId = ref(null);
+
+function syncCharacter() {
+  activeCharacterId.value = gameManager.selectedCharacterId;
+  selectedCharacter.value = gameManager.getCharacter();
+}
 
 // ── Asset helpers ──────────────────────────────────────────────────────────
 function toAliasMap(items = []) {
@@ -129,25 +134,26 @@ socket.on("room-created", ({ roomCode: code }) => {
   screen.value = "lobby";
 });
 
-socket.on("crisis-started", async ({ scenarioId, mode, unlockedUpTo: gate }) => {
+socket.on("crisis-started", async ({ scenarioId, mode, unlockedUpTo: gate, characterMode: charMode }) => {
   roomMode.value = mode;
   roomScenarioId.value = scenarioId;
   unlockedUpTo.value = gate ?? (mode === "teacher-paced" ? 1 : Infinity);
+  characterMode.value = charMode ?? false;
   teacherCurrentStageIdx.value = 0;
   teacherCurrentQIdx.value = 0;
 
   if (isTeacher.value) {
-    // Load scenario for the question panel — character doesn't matter for teacher view
     const indexEntry = gameManager.crisisIndex.find(c => c.id === scenarioId);
     await gameManager.loadCrisis(scenarioId, indexEntry?.default_character || null);
+    syncCharacter();
     screen.value = "teacher-dashboard";
   } else {
     startRoomGame(scenarioId);
   }
 });
 
-socket.on("simplified-mode-changed", ({ isSimplified: simplified }) => {
-  isSimplified.value = simplified;
+socket.on("character-mode-changed", ({ characterMode: mode }) => {
+  characterMode.value = mode;
 });
 
 socket.on("crisis-ended", () => {
@@ -166,6 +172,7 @@ socket.on("returned-to-lobby", ({ players }) => {
   currentQuestion.value = null;
   waitingForTeacher.value = false;
   unlockedUpTo.value = Infinity;
+  characterMode.value = false;
   screen.value = "lobby";
 });
 
@@ -308,9 +315,9 @@ function teacherUnlockTo(questionNumber) {
   }
 }
 
-function teacherToggleSimplify(simplified) {
-  isSimplified.value = simplified;
-  socket.emit("simplified-mode-toggle", { roomCode: roomCode.value, isSimplified: simplified });
+function teacherToggleCharacterMode(mode) {
+  characterMode.value = mode;
+  socket.emit("character-mode-toggle", { roomCode: roomCode.value, characterMode: mode });
 }
 
 function teacherEndSession() {
@@ -323,6 +330,8 @@ function teacherEndSession() {
 async function startRoomGame(scenarioId) {
   isBusy.value = true;
   try {
+    // Load with the default character so character text is available if the
+    // teacher enables character mode. Character intro is skipped for room play.
     const indexEntry = gameManager.crisisIndex.find(c => c.id === scenarioId);
     const data = await gameManager.loadCrisis(scenarioId, indexEntry?.default_character || null);
     if (!data) {
@@ -333,7 +342,8 @@ async function startRoomGame(scenarioId) {
     selectedCrisis.value = data;
     currentQuestion.value = null;
     syncGameState();
-    screen.value = "character-intro";
+    syncCharacter(); // sets activeCharacterId from gameManager
+    screen.value = "crisis-intro";
   } finally {
     isBusy.value = false;
   }
@@ -358,6 +368,7 @@ async function selectCrisis(crisisId) {
     selectedCrisis.value = data;
     currentQuestion.value = null;
     syncGameState();
+    syncCharacter();
     playCrisisCue(crisisId);
     screen.value = "character-intro";
   } finally {
@@ -528,10 +539,10 @@ function restartGame() {
       :players="roomPlayers"
       :scenarios="allScenarios"
       :error-msg="roomError"
-      :is-simplified="isSimplified"
+      :character-mode="characterMode"
       @start-crisis="teacherStartCrisis"
       @end-session="teacherEndSession"
-      @toggle-simplify="teacherToggleSimplify"
+      @toggle-character-mode="teacherToggleCharacterMode"
     />
 
     <TeacherDashboardScreen
@@ -543,12 +554,13 @@ function restartGame() {
       :current-stage-index="teacherCurrentStageIdx"
       :current-question-index="teacherCurrentQIdx"
       :unlocked-up-to="unlockedUpTo"
-      :is-simplified="isSimplified"
+      :character-mode="characterMode"
+      :character-id="activeCharacterId"
       @end-crisis="teacherEndCrisis"
       @return-to-room="teacherReturnToRoom"
       @show-rankings="teacherShowRankings"
       @unlock-to="teacherUnlockTo"
-      @toggle-simplify="teacherToggleSimplify"
+      @toggle-character-mode="teacherToggleCharacterMode"
     />
 
     <CrisisScreen
@@ -590,8 +602,7 @@ function restartGame() {
       :get-option-image="getOptionImage"
       :room-mode="inRoom ? roomMode : null"
       :waiting-for-teacher="waitingForTeacher"
-      :is-simplified="isSimplified"
-      :character-id="activeCharacterId"
+      :character-id="inRoom ? (characterMode ? activeCharacterId : null) : activeCharacterId"
       @choose="chooseOption"
     />
 

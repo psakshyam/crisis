@@ -6,7 +6,6 @@ const props = defineProps({
   getOptionImage: { type: Function, required: true },
   roomMode: { type: String, default: null },
   waitingForTeacher: { type: Boolean, default: false },
-  isSimplified: { type: Boolean, default: false },
   characterId: { type: String, default: null },
 });
 
@@ -16,10 +15,11 @@ const animationPreset = computed(() => {
   return props.question.animation || props.question.visual?.animation || "default";
 });
 
-// Resolve character-variant text, falling back to default when simplified or no variant.
+// When a characterId is set (solo mode), use the character-specific variant.
+// When null (room mode), use plain text.
 function resolveText(obj, defaultField, charField) {
   const basic = obj[defaultField] || '';
-  if (props.isSimplified || !props.characterId) return basic;
+  if (!props.characterId) return basic;
   return obj[charField]?.[props.characterId] || basic;
 }
 

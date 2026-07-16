@@ -16,6 +16,7 @@ export function createRoom({ pin, mode, teacherSocketId }) {
     currentStageIndex: 0,
     currentQuestionIndex: 0,
     unlockedUpTo: null, // null = lobby; Infinity = self-paced; number = teacher-paced gate
+    characterMode: false,
     players: {},
   };
   rooms.set(id, room);

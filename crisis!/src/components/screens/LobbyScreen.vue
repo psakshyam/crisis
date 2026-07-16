@@ -8,9 +8,9 @@ const props = defineProps({
   players: { type: Array, default: () => [] },
   scenarios: { type: Array, default: () => [] },
   errorMsg: { type: String, default: "" },
-  isSimplified: { type: Boolean, default: false },
+  characterMode: { type: Boolean, default: false },
 });
-const emit = defineEmits(["start-crisis", "end-session", "toggle-simplify"]);
+const emit = defineEmits(["start-crisis", "end-session", "toggle-character-mode"]);
 
 const selectedScenarioId = ref("");
 const confirmingEnd = ref(false);
@@ -68,15 +68,15 @@ function startCrisis() {
 
         <p v-if="errorMsg" class="error-text">{{ errorMsg }}</p>
 
-        <!-- Simplify toggle -->
+        <!-- Character mode toggle -->
         <div class="lobby-simplify-row">
-          <span class="field-label">Simplified Language</span>
+          <span class="field-label">Text Mode</span>
           <button
             class="simplify-toggle"
-            :class="{ 'simplify-toggle--on': isSimplified }"
-            @click="emit('toggle-simplify', !isSimplified)"
-          >{{ isSimplified ? "On" : "Off" }}</button>
-          <span class="simplify-hint">Students see simpler question text when enabled.</span>
+            :class="{ 'simplify-toggle--on': characterMode }"
+            @click="emit('toggle-character-mode', !characterMode)"
+          >{{ characterMode ? "Character Mode" : "Neutral Mode" }}</button>
+          <span class="simplify-hint">Character mode shows first-person scenario text to students.</span>
         </div>
 
         <!-- End session (with inline confirm) -->

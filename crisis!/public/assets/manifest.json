@@ -5,7 +5,8 @@
     { "alias": "campaigner", "src": "/assets/archetypes/campaigner.png" }
   ],
     "backgrounds": [
-    { "alias": "startPage", "src": "/assets/backgrounds/startPage.png" }
+    { "alias": "startPage", "src": "/assets/backgrounds/startPage.png" },
+    { "alias": "gameplayBg", "src": "/assets/backgrounds/gameplayBg.png" }
   ],
   "optionIcons": [
     { "alias": "icon_0", "src": "/assets/options/optionA.png" },

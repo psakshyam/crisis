@@ -1,0 +1,378 @@
+{
+  "id": "rohingya_crisis",
+  "title": "Rohingya Muslim Crisis",
+  "description": "Since August 2017, Rohingya Muslims in Myanmar have faced a campaign of targeted violence and structural discrimination that the United Nations views as a genocidal endeavor. Stripped of citizenship and excluded from the 2014 census, an estimated 3.5 million Rohingya have been displaced worldwide, with roughly 1.2 million sheltering in Bangladesh's Cox's Bazar — the world's largest refugee settlement. Policymakers must balance diplomatic pressure, humanitarian intervention, and refugee resettlement while navigating a crisis with no easy exits.",
+  "characters": {
+    "international_analyst": {
+      "id": "international_analyst",
+      "name": "International Policy Analyst",
+      "role": "International Policy Advisor, Humanitarian Affairs",
+      "personality": "Measured, pragmatic, weighs moral urgency against long-term consequences",
+      "motivation": "Protect vulnerable populations while preserving diplomatic leverage for lasting solutions",
+      "image": "/assets/archetypes/analyst.png",
+      "opening_scene": "You review a briefing packet as a screen flickers with early reports of unrest in Myanmar. Rohingya Muslims are facing rising discrimination — and the room is waiting on your read of the situation. Your background in humanitarian policy gives you a framework, but this crisis spans diplomacy, human rights, and the fates of millions who have nowhere else to go. Every decision from here will define the response."
+    }
+  },
+  "stages": [
+    {
+      "stage_id": 1,
+      "description": "Signs of Global Injustice (2017)",
+      "background_image": "stock_market_crash.png",
+      "questions": [
+        {
+          "id": 1,
+          "animation": "market-panic",
+          "text": "Reports confirm rising tensions between Myanmar's government and the Rohingya Muslim minority. On-ground sources describe formal discrimination — and human rights that are not just ignored, but unrecognized.",
+          "character_text": {
+            "international_analyst": "The reports on my desk are getting harder to read. Rohingya Muslims in Myanmar are facing formal discrimination, and their human rights aren't just being ignored — they're not being recognized at all. Everyone's looking at me for a call."
+          },
+          "fun_fact": "Rohingya living in Myanmar are required to carry identification cards designating them as non-citizen foreigners — they were excluded entirely from the 2014 national census.",
+          "options": [
+            {
+              "text": "Condemn discrimination and human rights abuses by putting out a statement.",
+              "feedback": "A coalition of countries has formed to recognize Rohingya presence and rights in Myanmar. This is a meaningful step in the right direction, however it cannot be ignored that multiple multipolar powers have not joined the coalition, and that the show of solidarity remains at a far distance from issues on the ground.",
+              "points": 1,
+              "type": "Statement",
+              "character_text": {
+                "international_analyst": "I put out a statement condemning the discrimination and human rights abuses outright."
+              },
+              "character_feedback": {
+                "international_analyst": "My statement helps rally a coalition of countries to recognize Rohingya presence and rights. It's a meaningful step, but several multipolar powers stay out of it, and the solidarity I've built still feels far from the ground reality."
+              }
+            },
+            {
+              "text": "Stage small-scale, instant humanitarian intervention.",
+              "feedback": "Instant and small scale humanitarian intervention comes with strong benefits but potentially stronger consequences. While humanitarian forces, like doctors without borders and peacekeepers, provide support to those in need on the ground, government forces have become weary of international intervention, positioning themselves to pose a harsher threat to minority populations.",
+              "points": 2,
+              "type": "Intervention",
+              "character_text": {
+                "international_analyst": "I authorize small-scale, immediate humanitarian intervention — get people and resources on the ground now."
+              },
+              "character_feedback": {
+                "international_analyst": "Humanitarian teams and peacekeepers reach people who need it. But Myanmar's government grows wary of international intervention, and I worry we've given them a reason to posture harder against the minority population."
+              }
+            },
+            {
+              "text": "Stay silent, and begin to pool funds for a future response.",
+              "feedback": "As you stay silent, the rest of the world attempts too to stay silent. While this results in decreased awareness, the lack of international intervention at early stages is seen as a potential asset towards the greater goal of minority group protection. Fundraising and international aid has been pooled with other leading nations, waiting and ready for its best use.",
+              "points": 3,
+              "type": "Quiet Preparation",
+              "character_text": {
+                "international_analyst": "I hold back publicly, and quietly start pooling funds and coordinating with allies for whatever comes next."
+              },
+              "character_feedback": {
+                "international_analyst": "My silence keeps most of the world quiet too. Awareness suffers, but I've built a reserve of aid and coordination that's ready the moment it's needed. Some of my colleagues think this is too passive — I think it's exactly right."
+              }
+            },
+            {
+              "text": "Condemn discrimination and human rights abuses by putting out a statement, and begin cooperative coordinating with neighbouring countries.",
+              "feedback": "A strong show of solidarity is achieved, although key powers stay strategically silent. Close coordination with likeminded leading countries has led to a diplomatic channel opened with the neighbouring Bangladeshi government, who have committed to working towards potential humanitarian solutions.",
+              "points": 4,
+              "type": "Statement + Coordination",
+              "character_text": {
+                "international_analyst": "I issue a public condemnation and immediately open coordination channels with Myanmar's neighbors."
+              },
+              "character_feedback": {
+                "international_analyst": "The statement lands, and my coordination with neighboring governments pays off — I've opened a real diplomatic channel with Bangladesh, who's committed to working toward humanitarian solutions. Key powers still stay strategically quiet, but I have something to build on."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "stage_id": 2,
+      "description": "The Breaking Point (Late 2017)",
+      "background_image": "stock_market_crash.png",
+      "questions": [
+        {
+          "id": 2,
+          "animation": "lockdown-grid",
+          "text": "The Burmese government has launched a full-scale offensive on the Rohingya after separatist insurgent groups mounted attacks. Death tolls are rising quickly through the thousands, many among Rohingya Muslims. People are in need, and the window to act is closing.",
+          "character_text": {
+            "international_analyst": "The war room screens are flashing red. The Burmese government has launched a full-scale offensive after insurgent attacks, and the death toll is climbing into the thousands. If we don't act now, I'm not sure when we could."
+          },
+          "fun_fact": "As part of the 2017 military operation, roughly 288 individual Rohingya villages were destroyed, and an estimated 7,000 people were killed in the first month alone.",
+          "options": [
+            {
+              "text": "Sit idly by.",
+              "feedback": "Option A is the strategic option. Humanitarian actions, foreign aid and bureaucratic support send a message. As Myanmar is backed by key powers and allies, the decision saves face. While your decision has helped maintain positive relations with the government, it relegates you to stay near silent on the matter, and ignores the perils of the humanitarian crisis at hand.",
+              "points": 1,
+              "type": "Non-intervention",
+              "character_text": {
+                "international_analyst": "I hold back from direct action and let existing channels run their course."
+              },
+              "character_feedback": {
+                "international_analyst": "Staying quiet preserves my relationship with Myanmar's government and its allies. But it also means I've gone nearly silent on a humanitarian catastrophe unfolding in real time — and that sits heavy."
+              }
+            },
+            {
+              "text": "Pursue retaliatory economic acts.",
+              "feedback": "Instruments of economic warfare like tariffs, embargoes and quotas go a long way to punish perpetrating governments. While this can have a heavy impact on the top, it can also further complicate humanitarian efforts. It is also possible economic warfare has limited impact on the motivations behind an ideological war.",
+              "points": 2,
+              "type": "Economic Pressure",
+              "character_text": {
+                "international_analyst": "I push for tariffs and embargoes against Myanmar's government."
+              },
+              "character_feedback": {
+                "international_analyst": "The sanctions hit hard at the top. But they complicate humanitarian access on the ground, and I'm not convinced economic pressure alone moves a government driven by ideology."
+              }
+            },
+            {
+              "text": "Focus on providing humanitarian funding for the persecuted.",
+              "feedback": "Humanitarian funding makes an instant impact in improving the quality of services provided to targeted minority groups at ground level. For minority groups, infrastructure is improved, however little is being done to stop the crisis from continuing — only prolong.",
+              "points": 3,
+              "type": "Humanitarian Funding",
+              "character_text": {
+                "international_analyst": "I direct funding toward humanitarian relief for the persecuted population."
+              },
+              "character_feedback": {
+                "international_analyst": "The funding makes a real difference on the ground — better services, better infrastructure. But it doesn't stop the offensive; it only makes surviving it more bearable."
+              }
+            },
+            {
+              "text": "Create pathways for refugees, balancing funding efforts and shying away from retaliatory action.",
+              "feedback": "Humanitarian funding makes an instant impact in improving the quality of services provided to targeted minority groups at ground level. This solution thinks forward, and begins to imagine and plan exits for targeted minorities. However, there is room for a greater investment in the present to be made.",
+              "points": 4,
+              "type": "Refugee Pathways",
+              "character_text": {
+                "international_analyst": "I combine humanitarian funding with the groundwork for refugee pathways out of Myanmar."
+              },
+              "character_feedback": {
+                "international_analyst": "It's a measured approach — funding relief now while planning exits for people who need them. It thinks beyond the present crisis, though I know we could still be investing harder in this moment."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "stage_id": 3,
+      "description": "Handling the Refugee Influx",
+      "background_image": "stock_market_crash.png",
+      "questions": [
+        {
+          "id": 3,
+          "animation": "stimulus-surge",
+          "text": "Hundreds of thousands of refugees are fleeing persecution from Myanmar. It's time to decide what part your country will play in handling the influx.",
+          "character_text": {
+            "international_analyst": "We're about to see hundreds of thousands of refugees flee persecution from Myanmar. It's time to decide whether we have a part to play in this."
+          },
+          "fun_fact": "The refugee population in Cox's Bazar, Bangladesh has swelled to nearly 1.2 million people — the largest refugee settlement in the world.",
+          "options": [
+            {
+              "text": "Broker diplomatic negotiations with Myanmar.",
+              "feedback": "Diplomatic channels are opened with the government of Myanmar, however after intense discussion, these channels are promptly closed, as proposed \"middle ground\" solutions were unsatisfiable to both parties. The plus side? The bottom line remains unchanged.",
+              "points": 1,
+              "type": "Diplomacy",
+              "character_text": {
+                "international_analyst": "I open direct diplomatic negotiations with Myanmar's government."
+              },
+              "character_feedback": {
+                "international_analyst": "Talks open, but close quickly — neither side can agree on a middle ground. At least the situation hasn't gotten worse because of it."
+              }
+            },
+            {
+              "text": "Open your own borders.",
+              "feedback": "While the solution is substantive and provides the chance for large numbers of refugees to flee persecution, the choice is constrained on two ends: the decision faces great practicality challenges considering the distance from Myanmar, and the lack of logistic infrastructure involved in mass migration, and public opinion is mixed given political and economic perspectives. Universally, however, the public understands the decision's intent.",
+              "points": 2,
+              "type": "Open Borders",
+              "character_text": {
+                "international_analyst": "I push to open our own borders to Rohingya refugees."
+              },
+              "character_feedback": {
+                "international_analyst": "It's a substantive gesture, but logistics fight us the whole way — the distance from Myanmar and the lack of migration infrastructure make it hard to execute. Public opinion is mixed, though most understand why I made the call."
+              }
+            },
+            {
+              "text": "Coordinate with the government of Bangladesh to create safe havens for refugees.",
+              "feedback": "The choice goes a long way to create a safe place for refugees in Bangladesh, however the concentration of refugees that have fled has caused capacity issues, and refugee settlements have become overcrowded, and require greater funding as a result.",
+              "points": 3,
+              "type": "Regional Safe Havens",
+              "character_text": {
+                "international_analyst": "I coordinate with Bangladesh's government to establish safe havens near the border."
+              },
+              "character_feedback": {
+                "international_analyst": "The safe havens give refugees a real place to go. But the concentration of arrivals overwhelms capacity fast — settlements are overcrowded and need far more funding than we planned for."
+              }
+            },
+            {
+              "text": "Create and facilitate a network of host countries.",
+              "feedback": "Facilitating a network of host countries proves to be successful in spreading out refugees into more positive living conditions. The cost of coordinating infrastructure and agreements is high, however the solution is the most pragmatic.",
+              "points": 4,
+              "type": "Host Country Network",
+              "character_text": {
+                "international_analyst": "I build a coordinated network of host countries willing to share the responsibility."
+              },
+              "character_feedback": {
+                "international_analyst": "Spreading refugees across a network of host countries genuinely improves living conditions. The coordination cost is steep, but of everything I could have done, this is the most pragmatic."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "stage_id": 4,
+      "description": "Distributing Humanitarian Funding",
+      "background_image": "stock_market_crash.png",
+      "questions": [
+        {
+          "id": 4,
+          "animation": "vaccine-race",
+          "text": "So many people are fleeing conflict, but there's so little to go around despite best efforts. Rohingya refugees are struggling in more ways than one — the funding strategy has to account for it.",
+          "character_text": {
+            "international_analyst": "Our Bangladeshi counterparts keep telling me the same thing: so many people fleeing conflict, so little to go around. Rohingya refugees are struggling in more ways than one, and I need to make sure our funding accounts for that."
+          },
+          "fun_fact": "More than 235,000 children in Cox's Bazar remain out of school, and over 60% of the settlement's water supply has been found contaminated.",
+          "options": [
+            {
+              "text": "Prioritize refugee transport pathways.",
+              "feedback": "While targeted efforts were able to help rescue refugees from the conditions and genocide in Myanmar, many arrive in your country confused, and feel ill-prepared to not survive, but thrive in their new starts.",
+              "points": 1,
+              "type": "Transport",
+              "character_text": {
+                "international_analyst": "I direct funding toward maximizing safe transport out of Myanmar."
+              },
+              "character_feedback": {
+                "international_analyst": "We rescue more people from the worst of it, but many arrive disoriented and unprepared — they've survived, but they're far from set up to thrive."
+              }
+            },
+            {
+              "text": "Prioritize cultural funding and services.",
+              "feedback": "Leaving a genocide where a group's identity has been repeatedly stripped, ignored and threatened, your choice goes a long way in helping refugees feel not only recognized, but appreciated and cared for. This being said, refugees are still met with tough material transitions to their new livelihoods.",
+              "points": 2,
+              "type": "Cultural Services",
+              "character_text": {
+                "international_analyst": "I put weight behind cultural and identity-affirming services for arriving refugees."
+              },
+              "character_feedback": {
+                "international_analyst": "After a genocide that stripped away identity at every turn, this choice helps people feel recognized and cared for. The material transition is still hard, but I think dignity matters here too."
+              }
+            },
+            {
+              "text": "Prioritize funding of essential services to be provided.",
+              "feedback": "Essential services, and welfare services are a pertinent choice to prioritize. While this prioritization best serves refugees in a time of need, increased services doesn't relax the strain on the services provided, and refugees find trouble adjusting to new livelihoods due to minimal infrastructure.",
+              "points": 3,
+              "type": "Essential Services",
+              "character_text": {
+                "international_analyst": "I direct the bulk of funding toward essential and welfare services."
+              },
+              "character_feedback": {
+                "international_analyst": "It's the right call for immediate need, but the strain on those services never really eases, and refugees still struggle to adjust without the infrastructure to support them long-term."
+              }
+            },
+            {
+              "text": "Prioritize building of infrastructure to accommodate refugees.",
+              "feedback": "Focusing on building housing provides refugees with futures that are more secure in the long term, however, focusing on the human aspects of refugee care serves as room to improve.",
+              "points": 4,
+              "type": "Infrastructure",
+              "character_text": {
+                "international_analyst": "I commit funding to building long-term infrastructure — housing, schools, clean water systems."
+              },
+              "character_feedback": {
+                "international_analyst": "The infrastructure gives people a more secure future. I just know I've left room to improve on the more immediate, human side of refugee care."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "stage_id": 5,
+      "description": "Protections for the Displaced",
+      "background_image": "stock_market_crash.png",
+      "questions": [
+        {
+          "id": 5,
+          "animation": "soft-landing",
+          "text": "As conflict begins to stabilize, what protections are we prepared to extend to the new influx of refugees — and for how long is it possible to sustain them?",
+          "character_text": {
+            "international_analyst": "The conflict is stabilizing, slightly. It's in our interest to keep supporting the refugees we've taken in — but for how long is this actually possible?"
+          },
+          "fun_fact": "An estimated 600,000 Rohingya remain in Myanmar's Rakhine State, where they continue to face a high risk of persecution and severe restrictions on their basic human rights.",
+          "options": [
+            {
+              "text": "Assuming relative stabilizing, allow expiry of protected status.",
+              "feedback": "A return to normalcy ensues within your own borders, however this isn't the case within Myanmar's borders. While conflict has let up slightly, refugees are thrust back into vulnerable conditions.",
+              "points": 1,
+              "type": "Status Expiry",
+              "character_text": {
+                "international_analyst": "I let protected status expire, trusting that conditions have stabilized enough."
+              },
+              "character_feedback": {
+                "international_analyst": "Things return to normal at home. But conditions in Myanmar haven't really stabilized — refugees sent back are thrust right into the vulnerability they fled."
+              }
+            },
+            {
+              "text": "Grant permanent residency to all settled refugees.",
+              "feedback": "While permanent solutions are extended, there are also many others awaiting permanent residency. Your country may not have the available resources to account for the influx of permanent residents, and other refugees are frustrated that their place in the \"line\" has been jumped.",
+              "points": 2,
+              "type": "Permanent Residency",
+              "character_text": {
+                "international_analyst": "I grant permanent residency to every settled refugee."
+              },
+              "character_feedback": {
+                "international_analyst": "It's a permanent answer for the people we've already taken in, but resources strain under the influx, and others still waiting feel like their place in line was jumped."
+              }
+            },
+            {
+              "text": "Assuming relative stabilizing, extend protected status.",
+              "feedback": "The path of least resistance, refugees are not returned to vulnerable conditions or extended promises impossible to keep. While this balance is a positive, refugees are uneasy about their status, and service providers and infrastructure builders become uncertain about the scale of their own operations.",
+              "points": 3,
+              "type": "Status Extension",
+              "character_text": {
+                "international_analyst": "I extend protected status rather than making permanent promises I can't yet keep."
+              },
+              "character_feedback": {
+                "international_analyst": "Nobody's sent back into danger, and I haven't overpromised. But refugees stay uneasy about their status, and my own service providers aren't sure how big to plan their operations."
+              }
+            },
+            {
+              "text": "Expire protected status, with open pathways to permanent residency/citizenship proportionate to available infrastructure.",
+              "feedback": "This choice transitions temporary status to permanent status, where the resources are available. Where not available, refugees must consider other options, including returning, or finding other pathways to permanent futures elsewhere — this keeps refugees stationed in your country well supported, and gives them the greatest chance of achieving positive outcomes.",
+              "points": 4,
+              "type": "Proportionate Transition",
+              "character_text": {
+                "international_analyst": "I transition status to permanent residency wherever infrastructure allows, and help others find pathways elsewhere."
+              },
+              "character_feedback": {
+                "international_analyst": "It's the balance I was aiming for — the refugees we can support get a real, well-supported future, and I've done my best to open other doors for those we can't. It's not a perfect answer, but it gives people their best shot."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "result_bands": [
+    {
+      "min": 5,
+      "max": 9,
+      "title": "Scenario 1: Fragile / Response Falters",
+      "summary": "International response stays largely symbolic — statements without follow-through, and funding pledged but slow to arrive. Refugee settlements remain severely overcrowded, with little coordinated support from host countries. Diplomatic channels with Myanmar and its neighbors stay closed or strained. Protections for displaced Rohingya remain uncertain, leaving hundreds of thousands in prolonged limbo.",
+      "simple_summary": ["Response stayed mostly words, not action", "Refugees remained in crowded, under-supported camps", "Very little was resolved"]
+    },
+    {
+      "min": 10,
+      "max": 13,
+      "title": "Scenario 2: Strained but Recoverable",
+      "summary": "A mix of economic pressure and targeted humanitarian funding provides some relief, though services remain stretched thin. Refugee pathways exist but are inconsistent, and coordination between host nations is uneven. Diplomatic relationships are damaged but not severed. Protected status is extended for now, though its long-term future is unclear.",
+      "simple_summary": ["Some real help reached refugees", "Support was uneven across regions", "The situation is stable but fragile"]
+    },
+    {
+      "min": 14,
+      "max": 17,
+      "title": "Scenario 3: Stable with Trade-offs",
+      "summary": "A coordinated network of host countries and steady humanitarian funding gives most refugees access to essential services and safer settlements. Diplomatic coordination with Bangladesh and regional partners holds. Long-term infrastructure investment improves conditions in Cox's Bazar, though full accountability for the crisis in Myanmar remains elusive.",
+      "simple_summary": ["Most refugees found real support and safety", "International coordination held together", "Justice for the crisis itself is still incomplete"]
+    },
+    {
+      "min": 18,
+      "max": 20,
+      "title": "Scenario 4: Strong / Coordinated Response",
+      "summary": "Early, clear condemnation combined with sustained diplomatic coordination secures a genuine multinational commitment to Rohingya protection. A well-funded host country network and long-term infrastructure investment give displaced families durable pathways to safety and citizenship. Your response is recognized as a model for balancing humanitarian urgency with sustainable, coordinated policy.",
+      "simple_summary": ["Strong, coordinated international support", "Refugees gained real, lasting protection", "Your response became a model for others"]
+    }
+  ]
+}

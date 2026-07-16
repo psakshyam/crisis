@@ -15,31 +15,16 @@
     ]
   },
   {
-    "id": "covid_2020",
-    "title": "COVID-19 Pandemic",
-    "summary": "Balance disease control, economic continuity, and long-term institutional resilience.",
-    "file_path": "/data/scenarios/covidCrisis.json",
-    "default_character": "dr_elena",
+    "id": "rohingya_crisis",
+    "title": "Rohingya Muslim Crisis",
+    "summary": "Navigate diplomatic response, humanitarian intervention, and refugee policy amid targeted persecution in Myanmar.",
+    "file_path": "/data/scenarios/rohingyaCrisis.json",
+    "default_character": "international_analyst",
     "available_characters": [
       {
-        "id": "dr_elena",
-        "name": "Dr. Elena",
-        "role": "Senior Economist, Central Bank",
-        "image": "/assets/archetypes/analyst.png"
-      }
-    ]
-  },
-  {
-    "id": "env_haiti",
-    "title": "Haiti Environmental Crisis",
-    "summary": "Confront deforestation, food insecurity, and climate-driven unrest in one of the world's most vulnerable nations.",
-    "file_path": "/data/scenarios/envCrisis.json",
-    "default_character": "dr_elena",
-    "available_characters": [
-      {
-        "id": "dr_elena",
-        "name": "Dr. Elena",
-        "role": "Senior Economist, Central Bank",
+        "id": "international_analyst",
+        "name": "International Policy Analyst",
+        "role": "International Policy Advisor, Humanitarian Affairs",
         "image": "/assets/archetypes/analyst.png"
       }
     ]

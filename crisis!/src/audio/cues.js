@@ -78,7 +78,7 @@ export function playCrisisCue(crisisId) {
         { frequency: 196.0, duration: 0.2 },
       ],
     },
-    covid_2020: {
+    rohingya_crisis: {
       type: "triangle",
       gain: 0.03,
       notes: [

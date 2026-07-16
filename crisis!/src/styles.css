@@ -57,6 +57,31 @@ body {
   z-index: 0;
 }
 
+.screen-character-intro.app-shell::before,
+.screen-crisis-intro.app-shell::before,
+.screen-stage-intro.app-shell::before,
+.screen-gameplay.app-shell::before,
+.screen-outcome-slide.app-shell::before {
+  background-image: linear-gradient(rgba(22, 33, 40, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(22, 33, 40, 0.09) 1px, transparent 1px);
+  z-index: 1;
+}
+
+.screen-character-intro.app-shell::after,
+.screen-crisis-intro.app-shell::after,
+.screen-stage-intro.app-shell::after,
+.screen-gameplay.app-shell::after,
+.screen-outcome-slide.app-shell::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("/assets/backgrounds/gameplayBg.png");
+  background-size: cover;
+  background-position: center;
+  pointer-events: none;
+  z-index: 0;
+}
+
 .top-bar {
   position: fixed;
   top: 14px;
@@ -202,6 +227,7 @@ body {
   justify-content: space-between;
   padding: 96px 24px 20px;
   position: relative;
+  z-index: 1;
   overflow: hidden;
   isolation: isolate;
 }
@@ -1699,6 +1725,8 @@ p {
   align-items: center;
   justify-content: center;
   padding: 32px 24px;
+  position: relative;
+  z-index: 1;
   background:
     radial-gradient(circle at 15% 50%, rgba(40, 95, 104, 0.12), transparent 50%),
     radial-gradient(circle at 85% 30%, rgba(207, 93, 54, 0.1), transparent 45%);

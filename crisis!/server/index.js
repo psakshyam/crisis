@@ -56,6 +56,7 @@ io.on("connection", (socket) => {
       scenarioId,
       mode: room.mode,
       unlockedUpTo: updated.unlockedUpTo,
+      characterMode: room.characterMode,
     });
   });
 
@@ -94,11 +95,12 @@ io.on("connection", (socket) => {
     io.to(room.id).emit("questions-unlocked", { unlockedUpTo: questionNumber });
   });
 
-  // ── Teacher: toggle simplified language mode ─────────────────────────────
-  socket.on("simplified-mode-toggle", ({ roomCode, isSimplified }) => {
+  // ── Teacher: toggle character / neutral mode ─────────────────────────────
+  socket.on("character-mode-toggle", ({ roomCode, characterMode }) => {
     const room = getRoom(roomCode);
     if (!room || room.teacherSocketId !== socket.id) return;
-    io.to(room.id).emit("simplified-mode-changed", { isSimplified });
+    room.characterMode = characterMode;
+    io.to(room.id).emit("character-mode-changed", { characterMode });
   });
 
   // ── Teacher: permanently end session ─────────────────────────────────────

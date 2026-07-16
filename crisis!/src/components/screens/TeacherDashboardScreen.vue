@@ -22,7 +22,9 @@ const props = defineProps({
   currentStageIndex: { type: Number, default: 0 },
   currentQuestionIndex: { type: Number, default: 0 },
   unlockedUpTo: { type: Number, default: Infinity },
-  isSimplified: { type: Boolean, default: false },
+  characterMode: { type: Boolean, default: false },
+  // ID of the active character so the panel can show character-voice text
+  characterId: { type: String, default: null },
 });
 
 const emit = defineEmits([
@@ -30,8 +32,15 @@ const emit = defineEmits([
   "return-to-room",
   "show-rankings",
   "unlock-to",
-  "toggle-simplify",
+  "toggle-character-mode",
 ]);
+
+// ── Text resolution (mirrors GameplayScreen logic) ────────────────────────
+function resolveText(obj, defaultField, charField) {
+  const basic = obj[defaultField] || '';
+  if (!props.characterMode || !props.characterId) return basic;
+  return obj[charField]?.[props.characterId] || basic;
+}
 
 // ── Selected player detail ────────────────────────────────────────────────
 const selectedPlayer = ref(null);
@@ -256,10 +265,10 @@ function isCorrect(entry) {
       <div class="dashboard-actions">
         <button
           class="simplify-toggle"
-          :class="{ 'simplify-toggle--on': isSimplified }"
-          @click="emit('toggle-simplify', !isSimplified)"
-          title="Toggle simplified language for students"
-        >{{ isSimplified ? "Simplified: On" : "Simplified: Off" }}</button>
+          :class="{ 'simplify-toggle--on': characterMode }"
+          @click="emit('toggle-character-mode', !characterMode)"
+          title="Switch between character-voice and neutral text for students"
+        >{{ characterMode ? "Character Mode" : "Neutral Mode" }}</button>
         <button class="ghost dashboard-btn" @click="openRankingModal">End Crisis</button>
       </div>
     </header>
@@ -270,14 +279,14 @@ function isCorrect(entry) {
         <span class="question-panel-label">Q{{ activeQuestionGlobalNumber }}</span>
         <span class="question-panel-answered">{{ answeredCurrentQuestion }} / {{ players.length }} answered</span>
       </div>
-      <p class="question-panel-text">{{ activeQuestion.text }}</p>
+      <p class="question-panel-text">{{ resolveText(activeQuestion, 'text', 'character_text') }}</p>
       <div class="option-chips">
         <span
           class="option-chip"
           v-for="(opt, idx) in activeQuestion.options"
           :key="idx"
         >
-          <strong>{{ String.fromCharCode(65 + idx) }}</strong> {{ opt.text }}
+          <strong>{{ String.fromCharCode(65 + idx) }}</strong> {{ resolveText(opt, 'text', 'character_text') }}
         </span>
       </div>
     </div>
