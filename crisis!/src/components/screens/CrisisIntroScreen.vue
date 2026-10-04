@@ -1,5 +1,6 @@
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from "vue";
+import BeatSequence from "../scene/BeatSequence.vue";
 
 const props = defineProps({
   title: {
@@ -10,7 +11,12 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  // Scenario with `intro_beats` plays them as scene frames instead of the card.
+  scenario: { type: Object, default: null },
+  character: { type: Object, default: null },
 });
+
+const beats = props.scenario?.intro_beats || null;
 
 const emit = defineEmits(["complete"]);
 
@@ -59,6 +65,7 @@ function onKeyDown(event) {
 }
 
 onMounted(() => {
+  if (beats) return;
   startTyping();
   window.addEventListener("keydown", onKeyDown);
 });
@@ -70,7 +77,15 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section class="cutscene-stage">
+  <BeatSequence
+    v-if="beats"
+    :beats="beats"
+    :character="character"
+    :scenario="scenario"
+    @complete="emit('complete')"
+  />
+
+  <section v-else class="cutscene-stage">
     <article class="cutscene-panel">
       <h2>{{ title }}</h2>
       <p class="cutscene-typewriter">{{ shownText }}</p>

@@ -24,8 +24,12 @@ const cleanedResultTitle = computed(() => {
     <p class="score">{{ finalScoreLabel }}: {{ finalScore }}</p>
 
     <article class="result-panel">
+      <p v-if="finalResult.evaluation" class="result-evaluation">Evaluation: {{ finalResult.evaluation }}</p>
       <h3 class="result-title">{{ cleanedResultTitle }}</h3>
       <p class="feedback">{{ finalResult.summary }}</p>
+      <p v-if="finalResult.reflection" class="result-reflection">
+        <strong>My reflection:</strong> {{ finalResult.reflection }}
+      </p>
 
       <ul
         v-if="Array.isArray(finalResult.simpleSummary) && finalResult.simpleSummary.length"

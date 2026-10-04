@@ -1,10 +1,31 @@
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from "vue";
+import BeatSequence from "../scene/BeatSequence.vue";
 
 const props = defineProps({
   character: { type: Object, required: true },
   crisisTitle: { type: String, default: "" },
+  scenario: { type: Object, default: null },
 });
+
+// Characters with scene art play their opening as scene frames. Without
+// authored `opening_beats`, the opening_scene text is voiced at the desk.
+function buildBeats(character) {
+  if (character.opening_beats?.length) return character.opening_beats;
+  if (!character.art) return null;
+  const beats = [{ layout: "desk", expression: "neutral" }];
+  if (character.opening_scene) {
+    beats.push({
+      layout: "desk",
+      expression: "frown",
+      bubble: { style: "rounded", tail: "none", text: character.opening_scene },
+    });
+  }
+  if (character.profile) beats.push({ layout: "profile" });
+  return beats;
+}
+
+const beats = buildBeats(props.character);
 
 const emit = defineEmits(["complete"]);
 
@@ -51,6 +72,7 @@ function onKeyDown(event) {
 }
 
 onMounted(() => {
+  if (beats) return;
   startTyping();
   window.addEventListener("keydown", onKeyDown);
 });
@@ -62,7 +84,15 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section class="character-intro-stage">
+  <BeatSequence
+    v-if="beats"
+    :beats="beats"
+    :character="character"
+    :scenario="scenario"
+    @complete="emit('complete')"
+  />
+
+  <section v-else class="character-intro-stage">
     <div class="character-intro-inner">
       <div class="character-portrait-wrap">
         <img

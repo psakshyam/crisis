@@ -1,52 +1,36 @@
 <script setup>
-import { onBeforeUnmount, onMounted } from "vue";
+import { computed } from "vue";
+import BeatSequence from "../scene/BeatSequence.vue";
+import { expressionForPoints } from "../scene/palette.js";
 
-defineProps({
-  feedback: {
-    type: String,
-    required: true,
-  },
-  animation: {
-    type: String,
-    default: "default",
-  },
+// After a choice: the character tells the outcome in a speech bubble, then the
+// fun fact is announced on the gradient banner.
+const props = defineProps({
+  feedback: { type: String, required: true },
+  funFact: { type: String, default: "" },
+  points: { type: Number, default: 0 },
+  maxPoints: { type: Number, default: 4 },
+  character: { type: Object, default: null },
+  scenario: { type: Object, default: null },
 });
 
 const emit = defineEmits(["continue"]);
 
-let didDismiss = false;
+const beats = computed(() => {
+  const outcome = props.character?.art
+    ? {
+        layout: "desk",
+        expression: expressionForPoints(props.points, props.maxPoints),
+        bubble: { style: "oval", tail: "left", text: props.feedback },
+      }
+    : { layout: "office", bubble: { style: "oval", tail: "none", text: props.feedback } };
 
-function dismiss() {
-  if (didDismiss) return;
-  didDismiss = true;
-  emit("continue");
-}
-
-function onKeyDown() {
-  dismiss();
-}
-
-onMounted(() => {
-  didDismiss = false;
-  window.addEventListener("keydown", onKeyDown);
-});
-
-onBeforeUnmount(() => {
-  window.removeEventListener("keydown", onKeyDown);
+  const list = [outcome];
+  if (props.funFact) list.push({ layout: "announce", title: "Fun fact", body: props.funFact });
+  return list;
 });
 </script>
 
 <template>
-  <section class="outcome-stage" :class="`anim-${animation}`">
-    <div class="scene-overlay" aria-hidden="true">
-      <span class="scene-shape scene-shape-a"></span>
-      <span class="scene-shape scene-shape-b"></span>
-      <span class="scene-shape scene-shape-c"></span>
-    </div>
-
-    <article class="outcome-card">
-      <p class="outcome-feedback">{{ feedback }}</p>
-      <button class="cta" @click="dismiss">&rarr;</button>
-    </article>
-  </section>
+  <BeatSequence :beats="beats" :character="character" :scenario="scenario" @complete="emit('continue')" />
 </template>

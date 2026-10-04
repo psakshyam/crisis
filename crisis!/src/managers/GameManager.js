@@ -126,6 +126,7 @@ class GameManager {
           : "";
         return {
           title: band.title || "Outcome",
+          evaluation: band.evaluation || "",
           summary: band.summary || t("game.outcomes.failure"),
           reflection,
           simpleSummary: Array.isArray(band.simple_summary) ? band.simple_summary : [],

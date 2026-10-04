@@ -15,22 +15,27 @@ import CrisisScreen from "./components/screens/CrisisScreen.vue";
 import CrisisIntroScreen from "./components/screens/CrisisIntroScreen.vue";
 import StageIntroScreen from "./components/screens/StageIntroScreen.vue";
 import GameplayScreen from "./components/screens/GameplayScreen.vue";
+import ConceptAnimationScreen from "./components/screens/ConceptAnimationScreen.vue";
 import OutcomeSlideScreen from "./components/screens/OutcomeSlideScreen.vue";
 import EndScreen from "./components/screens/EndScreen.vue";
 import { playCrisisCue, playSceneTransitionCue } from "./audio/cues.js";
+import { warmScenario } from "./components/scene/sceneArt.js";
 
 // ── Core game state ────────────────────────────────────────────────────────
 const screen = ref("loading");
 const appError = ref("");
 const isBusy = ref(false);
 const currentQuestion = ref(null);
+const conceptAnimationActive = ref(false);
+const conceptAnimationSrc = ref("");
 const manifestByAlias = ref({});
 const selectedCrisis = ref(null);
 const finalResult = ref({ title: "", summary: "", reflection: "", bandLabel: "", simpleSummary: [] });
 const finalScore = ref(0);
 const currentStageIndex = ref(0);
 const currentScore = ref(0);
-const outcomeSlide = ref({ feedback: "", animation: "default" });
+const outcomeSlide = ref({ feedback: "", funFact: "", points: 0, maxPoints: 4 });
+const questionNumber = ref(1);
 const pendingAction = ref(null);
 
 // ── Character mode (room) ──────────────────────────────────────────────────
@@ -59,9 +64,8 @@ const roomRankings = ref([]);
 const showRankingsOverlay = ref(false);
 
 // ── Computed ───────────────────────────────────────────────────────────────
-const stageNumber = computed(() => currentStageIndex.value + 1);
 const startPage = computed(() => manifestByAlias.value.startPage || "");
-const activeStage = computed(() => gameManager.stages[currentStageIndex.value] || null);
+const activeStage = computed(() => selectedCrisis.value?.stages?.[currentStageIndex.value] || null);
 const stageIntroKey = computed(() => `stage-${currentStageIndex.value}`);
 const gameplayKey = computed(() => {
   const id = currentQuestion.value?.id ?? "none";
@@ -72,6 +76,15 @@ const allScenarios = computed(() => gameManager.crisisIndex);
 const teacherStages = computed(() => (isTeacher.value ? gameManager.stages : []));
 const selectedCharacter = ref(null);
 const activeCharacterId = ref(null);
+const totalQuestions = computed(() =>
+  (selectedCrisis.value?.stages || []).reduce((sum, s) => sum + (s.questions?.length || 0), 0)
+);
+// Character whose scene art is shown. In room mode with character voice off,
+// play falls back to plain text and no character art.
+const sceneCharacter = computed(() => {
+  if (inRoom.value && !characterMode.value) return null;
+  return selectedCharacter.value;
+});
 
 function syncCharacter() {
   activeCharacterId.value = gameManager.selectedCharacterId;
@@ -85,6 +98,10 @@ function toAliasMap(items = []) {
 function getOptionImage(index) {
   return manifestByAlias.value[`icon_${index}`] || "";
 }
+function getConceptAnimation(question) {
+  const key = question?.concept_animation;
+  return key ? manifestByAlias.value[key] || "" : "";
+}
 
 // ── Initialise ─────────────────────────────────────────────────────────────
 async function loadManifest() {
@@ -94,6 +111,7 @@ async function loadManifest() {
   manifestByAlias.value = {
     ...toAliasMap(manifest.backgrounds),
     ...toAliasMap(manifest.optionIcons),
+    ...toAliasMap(manifest.animations),
   };
 }
 
@@ -170,6 +188,8 @@ socket.on("returned-to-lobby", ({ players }) => {
   // Reset game state for next round
   selectedCrisis.value = null;
   currentQuestion.value = null;
+  conceptAnimationActive.value = false;
+  conceptAnimationSrc.value = "";
   waitingForTeacher.value = false;
   unlockedUpTo.value = Infinity;
   characterMode.value = false;
@@ -341,8 +361,11 @@ async function startRoomGame(scenarioId) {
     }
     selectedCrisis.value = data;
     currentQuestion.value = null;
+    conceptAnimationActive.value = false;
+    conceptAnimationSrc.value = "";
     syncGameState();
     syncCharacter(); // sets activeCharacterId from gameManager
+    warmScenario(data, sceneCharacter.value);
     screen.value = "crisis-intro";
   } finally {
     isBusy.value = false;
@@ -367,17 +390,21 @@ async function selectCrisis(crisisId) {
     }
     selectedCrisis.value = data;
     currentQuestion.value = null;
+    conceptAnimationActive.value = false;
+    conceptAnimationSrc.value = "";
     syncGameState();
     syncCharacter();
+    warmScenario(data, selectedCharacter.value);
     playCrisisCue(crisisId);
-    screen.value = "character-intro";
+    // The crisis introduction comes first, then the character's opening.
+    screen.value = "crisis-intro";
   } finally {
     isBusy.value = false;
   }
 }
 
 function completeCharacterIntro() {
-  screen.value = "crisis-intro";
+  startFirstStage();
 }
 
 function advanceTurn() {
@@ -385,6 +412,9 @@ function advanceTurn() {
   const q = gameManager.getCurrentQuestion();
   if (!q) { endGame(); return; }
   currentQuestion.value = q;
+  questionNumber.value = gameManager.totalQuestionsAnswered + 1;
+  conceptAnimationSrc.value = getConceptAnimation(q);
+  conceptAnimationActive.value = !!conceptAnimationSrc.value;
 
   // In teacher-paced room mode: check gate before showing question
   if (inRoom.value && roomMode.value === "teacher-paced") {
@@ -395,12 +425,31 @@ function advanceTurn() {
   }
 }
 
+function dismissConceptAnimation() {
+  conceptAnimationActive.value = false;
+}
+
 function startStage() {
   screen.value = "gameplay";
   advanceTurn();
 }
 
 function completeCrisisIntro() {
+  // Solo play meets the character next; rooms skip the character intro.
+  if (!inRoom.value && selectedCharacter.value) {
+    screen.value = "character-intro";
+    return;
+  }
+  startFirstStage();
+}
+
+function startFirstStage() {
+  // With scene art or stage story frames, stage 1 opens on its intro like
+  // every other stage.
+  if (sceneCharacter.value?.art || activeStage.value?.intro_beats?.length) {
+    screen.value = "stage-intro";
+    return;
+  }
   screen.value = "gameplay";
   advanceTurn();
 }
@@ -429,7 +478,9 @@ function chooseOption(option) {
   // feedback is already resolved by GameplayScreen (character variant + simplified applied)
   outcomeSlide.value = {
     feedback: option.feedback || "Decision recorded.",
-    animation: current?.animation || current?.visual?.animation || "default",
+    funFact: current?.fun_fact || "",
+    points: option.points ?? 0,
+    maxPoints: option.maxPoints ?? 4,
   };
   screen.value = "outcome-slide";
 }
@@ -447,6 +498,13 @@ function continueAfterOutcome() {
 
   if (result.action === "STAGE_CHANGE") {
     playSceneTransitionCue(gameManager.currentStageIndex + 1);
+    syncGameState();
+    // With scene art, later stages go straight into the next question (the
+    // mission frame only opens the game) unless they have their own frames.
+    if (sceneCharacter.value?.art && !activeStage.value?.intro_beats?.length) {
+      startStage();
+      return;
+    }
     screen.value = "stage-intro";
     return;
   }
@@ -482,11 +540,6 @@ function restartGame() {
 
 <template>
   <main class="app-shell" :class="`screen-${screen}`">
-    <header class="top-bar" v-if="screen === 'gameplay'">
-      <div class="top-pill">{{ uiText.gameplay.stage }} {{ stageNumber }}</div>
-      <div v-if="selectedCharacter" class="top-pill">{{ selectedCharacter.name }}</div>
-    </header>
-
     <section class="panel" v-if="screen === 'loading'">
       <h1>{{ uiText.startup.loadingTitle }}</h1>
       <p>{{ uiText.startup.loadingBody }}</p>
@@ -578,6 +631,7 @@ function restartGame() {
       v-else-if="screen === 'character-intro' && selectedCharacter"
       :character="selectedCharacter"
       :crisis-title="selectedCrisis?.title ?? ''"
+      :scenario="selectedCrisis"
       @complete="completeCharacterIntro"
     />
 
@@ -585,6 +639,8 @@ function restartGame() {
       v-else-if="screen === 'crisis-intro' && selectedCrisis"
       :title="selectedCrisis.title"
       :description="selectedCrisis.description"
+      :scenario="selectedCrisis"
+      :character="sceneCharacter"
       @complete="completeCrisisIntro"
     />
 
@@ -592,13 +648,29 @@ function restartGame() {
       v-else-if="screen === 'stage-intro' && activeStage"
       :key="stageIntroKey"
       :stage-description="activeStage.description"
+      :stage="activeStage"
+      :is-first-stage="currentStageIndex === 0"
+      :character="sceneCharacter"
+      :scenario="selectedCrisis"
       @continue="startStage"
+    />
+
+    <ConceptAnimationScreen
+      v-else-if="screen === 'gameplay' && currentQuestion && conceptAnimationActive"
+      :key="`${gameplayKey}-anim`"
+      :src="conceptAnimationSrc"
+      @continue="dismissConceptAnimation"
     />
 
     <GameplayScreen
       v-else-if="screen === 'gameplay' && currentQuestion"
       :key="gameplayKey"
       :question="currentQuestion"
+      :stage="activeStage"
+      :question-number="questionNumber"
+      :total-questions="totalQuestions"
+      :character="sceneCharacter"
+      :scenario="selectedCrisis"
       :get-option-image="getOptionImage"
       :room-mode="inRoom ? roomMode : null"
       :waiting-for-teacher="waitingForTeacher"
@@ -609,7 +681,11 @@ function restartGame() {
     <OutcomeSlideScreen
       v-else-if="screen === 'outcome-slide'"
       :feedback="outcomeSlide.feedback"
-      :animation="outcomeSlide.animation"
+      :fun-fact="outcomeSlide.funFact"
+      :points="outcomeSlide.points"
+      :max-points="outcomeSlide.maxPoints"
+      :character="sceneCharacter"
+      :scenario="selectedCrisis"
       @continue="continueAfterOutcome"
     />
 

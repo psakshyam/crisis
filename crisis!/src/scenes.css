@@ -1,0 +1,983 @@
+/* ── Scene system ───────────────────────────────────────────────────────────
+   Layered story frames (SceneBeat / BeatSequence) and the decision screen.
+   Positions inside .scene-rig are percentages of the design frame
+   (character + desk region of the 1131×762 storyboard), so the group scales
+   as one unit at any viewport size.                                         */
+
+:root {
+  /* desk rig geometry, shared by the rig and the bubble anchored beside it */
+  --rig-left: clamp(0px, 4vw, 80px);
+  --rig-width: min(56vw, calc(72vh * 620 / 522));
+  --scene-ink: #141414;
+  --scene-gray: #585d5e;
+  --scene-muted: #a89c9c;
+  --scene-folder: #e79d70;
+  --scene-folder-label: #efcdb8;
+  --scene-desk: #2d1a08;
+  --scene-bubble: #d9d9d9;
+  --scene-banner: #5c2a2a;
+  --scene-fun: #ffc1c4;
+  --scene-bad: #e8262c;
+  --scene-good: #2e9a3a;
+  --scene-hl-muted: #6f7f80;
+  --scene-profile: #c9622b;
+  --scene-gradient: linear-gradient(
+    90deg,
+    rgba(231, 157, 112, 0.94),
+    rgba(248, 200, 192, 0.92) 30%,
+    rgba(248, 200, 192, 0.92) 70%,
+    rgba(231, 157, 112, 0.94)
+  );
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.rich-text {
+  white-space: pre-line;
+}
+
+.rich-text-pending {
+  visibility: hidden;
+}
+
+.rich-text-hl--bad {
+  color: var(--scene-bad);
+}
+
+.rich-text-hl--good {
+  color: var(--scene-good);
+}
+
+.rich-text-hl--muted {
+  color: var(--scene-hl-muted);
+}
+
+/* ── Beat sequence shell ─────────────────────────────────────────────────── */
+
+.beat-sequence {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  cursor: pointer;
+  user-select: none;
+  transition: opacity 0.38s ease;
+}
+
+/* fades in once the scene's art has loaded, so it appears as one piece */
+.beat-sequence.is-ready {
+  animation: scene-fade-in 0.38s ease both;
+}
+
+.beat-sequence.is-leaving {
+  opacity: 0;
+}
+
+@keyframes scene-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.beat-controls {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 6;
+  display: flex;
+  gap: 8px;
+}
+
+.beat-control {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(26, 29, 31, 0.72);
+  color: #fff2de;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.beat-control:hover {
+  background: rgba(26, 29, 31, 0.88);
+}
+
+.beat-control:focus-visible,
+.choose-option:focus-visible {
+  outline: 3px solid var(--scene-folder);
+  outline-offset: 3px;
+}
+
+.beat-fade-enter-active,
+.beat-fade-leave-active {
+  transition: opacity 0.38s ease;
+}
+
+.beat-fade-enter-from,
+.beat-fade-leave-to {
+  opacity: 0;
+}
+
+/* ── Frame + background ──────────────────────────────────────────────────── */
+
+.scene {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: #fff;
+  font-family: "Space Grotesk", sans-serif;
+  color: var(--scene-ink);
+}
+
+.scene-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.scene--desk .scene-bg,
+.scene--close .scene-bg,
+.scene--office .scene-bg {
+  filter: brightness(0.62) saturate(0.55);
+}
+
+.scene--profile .scene-bg {
+  opacity: 0.4;
+  filter: saturate(0.4);
+}
+
+/* the kitchen art has a few unpainted gaps; fill them with the wall colour */
+.scene--kitchen {
+  background: #efe8dd;
+}
+
+.scene--kitchen .scene-bg {
+  object-position: left center;
+}
+
+/* ── Desk rig (seated character + desk + laptop) ─────────────────────────── */
+
+.scene-rig {
+  position: absolute;
+  bottom: 0;
+  left: var(--rig-left);
+  width: var(--rig-width);
+  aspect-ratio: 620 / 522;
+}
+
+.scene--mission .scene-rig {
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(60vw, calc(70vh * 620 / 522));
+}
+
+.scene-rig > img,
+.scene-desk {
+  position: absolute;
+  display: block;
+}
+
+.scene-rig-character {
+  left: 25.8%;
+  top: 0;
+  width: 47.3%;
+}
+
+.scene-desk {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 22.4%;
+  background: var(--scene-desk);
+  clip-path: polygon(11.3% 0, 89.5% 0, 98.4% 100%, 2.4% 100%);
+}
+
+.scene-rig-laptop {
+  left: 24.2%;
+  top: 63.8%;
+  width: 51.6%;
+}
+
+.scene-rig-questions {
+  left: 25%;
+  top: -18%;
+  width: 50%;
+}
+
+.scene-rig-file {
+  left: 10.6%;
+  bottom: 2%;
+  width: 22%;
+}
+
+/* ── Close-up ─────────────────────────────────────────────────────────────── */
+
+.scene-close-character {
+  position: absolute;
+  left: 50%;
+  top: 30vh;
+  transform: translateX(-50%);
+  width: min(32vw, 48vh);
+}
+
+.scene-desk--close {
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(61vw, 90vh);
+  height: 7vh;
+  clip-path: polygon(3% 0, 97% 0, 100% 100%, 0 100%);
+}
+
+/* ── Office desk with props (no character) ───────────────────────────────── */
+
+.scene-desk--wide {
+  height: 23vh;
+  clip-path: polygon(4.4% 0, 95.5% 0, 100% 100%, 0 100%);
+}
+
+.scene-prop {
+  position: absolute;
+  display: block;
+}
+
+.scene-prop--laptop_interbank_chart {
+  left: 13.7%;
+  bottom: 7.5vh;
+  width: min(25vw, 42vh);
+}
+
+.scene-prop--paper_stack {
+  left: 47%;
+  bottom: 5vh;
+  width: min(19vw, 32vh);
+}
+
+/* ── Kitchen ──────────────────────────────────────────────────────────────── */
+
+.scene-kitchen-figure {
+  position: absolute;
+  right: 11vw;
+  bottom: -6vh;
+  height: 62vh;
+}
+
+.scene-caption {
+  position: absolute;
+  top: 5vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  margin: 0;
+  font-family: "Archivo Black", sans-serif;
+  font-size: clamp(1rem, 2vw, 1.6rem);
+  text-align: center;
+}
+
+/* ── Assistant (blurred figure interjecting from the right, Opening 1.3) ──── */
+
+.scene-assistant {
+  position: absolute;
+  right: -2vw;
+  bottom: -8vh;
+  height: 80vh;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+/* ── Speech bubbles ───────────────────────────────────────────────────────── */
+
+.scene-bubble {
+  position: absolute;
+  z-index: 3;
+  top: 10vh;
+  /* starts at the character's right shoulder */
+  left: calc(var(--rig-left) + var(--rig-width) * 0.68);
+  max-width: min(600px, calc(96vw - var(--rig-left) - var(--rig-width) * 0.68));
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(1.05rem, 1.1vw + 0.6rem, 1.75rem);
+  line-height: 1.35;
+}
+
+/* the hidden sizer and the live text share one grid cell, so the bubble is
+   sized for the longest line of the shot and never resizes */
+.scene-bubble-text {
+  display: grid;
+  margin: 0;
+}
+
+.scene-bubble-text > * {
+  grid-area: 1 / 1;
+}
+
+.scene-bubble-sizer {
+  visibility: hidden;
+  white-space: pre-line;
+}
+
+.scene-bubble-speaker {
+  margin: 0 0 6px;
+  font-size: 0.75em;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.65;
+}
+
+.scene-bubble--oval {
+  background: var(--scene-bubble);
+  border-radius: 50%;
+  padding: 2.2em 2.8em;
+}
+
+.scene-bubble--rounded {
+  background: rgba(255, 255, 255, 0.86);
+  border-radius: 40px;
+  padding: 1.4em 1.8em;
+}
+
+.scene-bubble--banner {
+  top: 7vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  background: var(--scene-banner);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.9em 2.4em;
+  text-align: center;
+}
+
+.scene-bubble--banner .rich-text-hl--bad {
+  color: #ff6b6b;
+}
+
+/* Tail: positioned in % of the bubble. 28% across, the ellipse's lower edge
+   sits at ~95% of its height whatever the bubble's size, so starting the tail
+   at 90% keeps it overlapping (attached to) the oval at every size. */
+.scene-bubble--oval::after {
+  content: "";
+  position: absolute;
+  top: 90%;
+  width: 30px;
+  height: 44px;
+  background: var(--scene-bubble);
+}
+
+.scene-bubble--tail-left::after {
+  left: 28%;
+  clip-path: polygon(0 0, 100% 0, 15% 100%);
+}
+
+.scene-bubble--tail-right::after {
+  right: 28%;
+  clip-path: polygon(0 0, 100% 0, 85% 100%);
+}
+
+.scene-bubble--tail-none::after {
+  display: none;
+}
+
+.scene-bubble--in-office {
+  top: 22vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+}
+
+.scene-bubble--in-kitchen {
+  top: 24vh;
+  left: 34%;
+  max-width: min(560px, 40vw);
+}
+
+/* ── Profile ──────────────────────────────────────────────────────────────── */
+
+.scene-profile {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4vw;
+  padding: 6vh 6vw;
+}
+
+/* drawn above the light beam, which starts behind her */
+.scene-profile-figure {
+  position: relative;
+  z-index: 2;
+  display: block;
+  flex-shrink: 0;
+  height: min(80vh, 640px);
+}
+
+/* Light beam from the character to her profile card (Opening 4.3). It hangs
+   off the card's left edge at the card's full height, so its wide end always
+   matches the card; it reaches back across the gap (4vw) to ~40% into the
+   figure (figure width = height × 192/600). */
+.scene-profile-beam {
+  position: absolute;
+  right: 100%;
+  top: 0;
+  height: 100%;
+  width: calc(4vw + min(80vh, 640px) * 0.32 * 0.4);
+  background: rgba(255, 255, 255, 0.5);
+  clip-path: polygon(0 40%, 100% 0, 100% 100%, 0 52%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.scene-profile-cards {
+  display: flex;
+  align-items: flex-start;
+  gap: 3vw;
+}
+
+.scene-profile-card {
+  position: relative;
+  width: min(260px, 24vw);
+  padding: 24px;
+  background: rgba(240, 232, 225, 0.92);
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
+  color: #d8834f;
+  font-weight: 700;
+  font-size: clamp(0.85rem, 1vw + 0.3rem, 1.15rem);
+  line-height: 1.3;
+}
+
+.scene-profile-card + .scene-profile-card {
+  margin-top: 14vh;
+}
+
+.scene-profile-card p {
+  margin: 0 0 14px;
+}
+
+.scene-profile-card strong {
+  color: var(--scene-profile);
+}
+
+.scene-profile-title {
+  margin: 0 0 14px;
+  font-family: "Archivo Black", sans-serif;
+  font-size: clamp(1.5rem, 2.4vw, 2.2rem);
+  color: var(--scene-profile);
+}
+
+/* ── Mission / announce banners and title cards ──────────────────────────── */
+
+.scene-banner {
+  background: var(--scene-gradient);
+  border-radius: 10px;
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.18);
+  padding: 1.6em 1.8em;
+  text-align: center;
+}
+
+.scene-banner--mission {
+  position: absolute;
+  top: 43vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(64vw, 760px);
+}
+
+.scene-banner-kicker {
+  margin: 0 0 0.6em;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+}
+
+.scene-banner--announce .scene-banner-kicker {
+  font-family: "Archivo Black", sans-serif;
+  font-size: clamp(1.3rem, 2.4vw, 2rem);
+}
+
+.scene-banner-body {
+  margin: 0;
+  font-family: "Archivo Black", sans-serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.9rem);
+  line-height: 1.3;
+}
+
+.scene-banner--announce .scene-banner-body {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  font-size: clamp(1rem, 1.2vw + 0.5rem, 1.4rem);
+  line-height: 1.5;
+}
+
+.scene-card {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.2em;
+  padding: 8vh 24px 96px;
+  overflow-y: auto;
+  text-align: center;
+}
+
+/* vertically centred, but scrolls from the top when content is taller */
+.scene-card > :first-child {
+  margin-top: auto;
+}
+
+.scene-card > :last-child {
+  margin-bottom: auto;
+}
+
+.scene-card .scene-banner {
+  width: min(820px, 100%);
+}
+
+.scene-card-title {
+  margin: 0;
+  font-family: "Archivo Black", sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+}
+
+.scene-card-body {
+  max-width: 62ch;
+  margin: 0;
+  color: #6f6363;
+  font-size: clamp(1.05rem, 1vw + 0.6rem, 1.45rem);
+  line-height: 1.55;
+}
+
+/* ── Decision screen ─────────────────────────────────────────────────────── */
+
+.choose-stage {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  overflow-y: auto;
+  animation: scene-fade-in 0.38s ease both;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6vh 16px 0;
+  background: #fff;
+  font-family: "Space Grotesk", sans-serif;
+  color: var(--scene-ink);
+}
+
+.choose-stage > * {
+  flex-shrink: 0;
+}
+
+.choose-head {
+  text-align: center;
+}
+
+.choose-title {
+  margin: 0;
+  font-family: "Archivo Black", sans-serif;
+  font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+  line-height: 1.15;
+}
+
+.choose-period {
+  margin: 4px 0 0;
+  font-family: "Archivo Black", sans-serif;
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  color: var(--scene-gray);
+}
+
+.choose-prompt {
+  max-width: 900px;
+  min-height: 2.8em;
+  margin: 3vh 0 0;
+  font-weight: 700;
+  font-size: clamp(1.1rem, 1.4vw + 0.5rem, 1.6rem);
+  line-height: 1.35;
+  text-align: center;
+}
+
+.choose-body {
+  width: min(1000px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.choose-hint {
+  margin: 3vh 0 2vh;
+  font-size: 0.95rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.choose-body.is-revealed .choose-hint {
+  opacity: 1;
+}
+
+.choose-options {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 5vh;
+}
+
+.choose-option {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 18px 24px 20px;
+  border: none;
+  border-radius: 12px;
+  background: var(--q-color);
+  color: var(--scene-gray);
+  font-family: inherit;
+  text-align: center;
+  cursor: pointer;
+  opacity: 0;
+  transition:
+    opacity 0.16s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* options become visible once their intro card has slotted in */
+.choose-option.is-placed {
+  opacity: 1;
+}
+
+.choose-body.is-revealed .choose-option:not(:disabled):hover {
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.choose-option:disabled {
+  cursor: default;
+}
+
+/* dog-ear corner */
+.choose-option::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 12px 0 4px 0;
+}
+
+.choose-option img {
+  max-height: 64px;
+}
+
+.choose-option-label {
+  color: var(--scene-folder);
+  font-weight: 600;
+}
+
+/* the big card each option is introduced on (frames N.2–N.5) */
+.choose-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  margin: auto;
+  width: min(860px, calc(100vw - 32px));
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 32px 40px 36px;
+  border-radius: 14px;
+  background: var(--q-color);
+  color: var(--scene-gray);
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.16);
+  pointer-events: none;
+}
+
+.choose-skip {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 6;
+  width: auto;
+  padding: 0 20px;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+.choose-intro .choose-option-label {
+  font-size: clamp(1.2rem, 2vw, 1.7rem);
+}
+
+.choose-intro-text {
+  font-size: clamp(1.25rem, 2.4vw, 2.1rem);
+  line-height: 1.35;
+}
+
+.choose-option-text {
+  font-size: clamp(1rem, 0.6vw + 0.75rem, 1.2rem);
+  line-height: 1.45;
+}
+
+/* ── Solution file ────────────────────────────────────────────────────────── */
+
+.solution-file {
+  width: min(720px, 100%);
+  margin-top: auto;
+}
+
+.solution-file-tabs {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  padding: 0 6%;
+}
+
+.solution-file-tab {
+  flex: 0 1 74px;
+  height: 26px;
+  padding-top: 4px;
+  background: var(--tab-color);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  clip-path: polygon(10% 0, 90% 0, 100% 100%, 0 100%);
+}
+
+.solution-file-tab.is-active {
+  height: 44px;
+  padding-top: 8px;
+}
+
+.solution-file-body {
+  display: flex;
+  justify-content: center;
+  height: clamp(90px, 18vh, 170px);
+  padding-top: 22px;
+  background: var(--scene-folder);
+  border-radius: 10px 10px 0 0;
+}
+
+.solution-file-label {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  padding: 12px 22px;
+  background: var(--scene-folder-label);
+  border-radius: 6px;
+}
+
+.solution-file-owner {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.solution-file-name {
+  font-size: clamp(1rem, 1.6vw, 1.3rem);
+  font-weight: 700;
+}
+
+/* ── End screen additions ─────────────────────────────────────────────────── */
+
+.result-evaluation {
+  margin: 0 0 6px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+
+.result-reflection {
+  margin: 10px 0 0;
+  font-style: italic;
+}
+
+/* ── Portrait / phones ────────────────────────────────────────────────────── */
+
+@media (orientation: portrait), (max-width: 700px) {
+  .scene-rig,
+  .scene--mission .scene-rig {
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(100vw, calc(48vh * 620 / 522));
+  }
+
+  .scene-bubble,
+  .scene-bubble--in-kitchen {
+    top: 18vh;
+    left: 16px;
+    right: 16px;
+    max-width: none;
+  }
+
+  /* full-width bubble: pad ~15% / 11% of its width so the text stays inside
+     the ellipse's inscribed rectangle */
+  .scene-bubble--oval {
+    padding: 10vw 14vw;
+  }
+
+  .scene-bubble--in-office {
+    top: 16vh;
+    left: 16px;
+    right: 16px;
+    transform: none;
+    width: auto;
+  }
+
+  .scene-bubble--banner {
+    left: 50%;
+    right: auto;
+    width: max-content;
+    max-width: calc(100vw - 32px);
+  }
+
+  .scene-close-character {
+    width: min(84vw, 44vh);
+    top: auto;
+    bottom: -12vh;
+  }
+
+  .scene-desk--close {
+    width: 100vw;
+  }
+
+  .scene-desk--wide {
+    height: 26vh;
+  }
+
+  .scene-prop--laptop_interbank_chart {
+    left: 4vw;
+    bottom: 9vh;
+    width: 50vw;
+  }
+
+  .scene-prop--paper_stack {
+    left: 58vw;
+    bottom: 7vh;
+    width: 38vw;
+  }
+
+  .scene--kitchen .scene-bg {
+    object-position: 72% center;
+  }
+
+  .scene-kitchen-figure {
+    right: 4vw;
+    bottom: -4vh;
+    height: 46vh;
+  }
+
+  .scene-caption {
+    top: 4vh;
+    padding: 0 16px;
+  }
+
+  .scene--profile {
+    overflow-y: auto;
+  }
+
+  .scene-profile {
+    position: relative;
+    inset: auto;
+    min-height: 100%;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    gap: 16px;
+    padding: 4vh 16px 0;
+  }
+
+  .scene-profile-cards {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .scene-profile-card {
+    flex: 1;
+    width: auto;
+    padding: 14px;
+  }
+
+  .scene-profile-card + .scene-profile-card {
+    margin-top: 0;
+  }
+
+  .scene-profile-figure {
+    height: 44vh;
+  }
+
+  .scene-assistant {
+    right: -14vw;
+    bottom: -6vh;
+    height: 55vh;
+  }
+
+  .scene-profile-beam {
+    display: none;
+  }
+
+  .scene-banner--mission {
+    top: 30vh;
+    width: calc(100vw - 32px);
+  }
+
+  .choose-options {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .solution-file {
+    width: calc(100% + 32px);
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+
+  .solution-file-tabs {
+    padding: 0 4px;
+  }
+
+  .solution-file-tab {
+    flex: 1 1 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .beat-sequence.is-ready,
+  .choose-stage {
+    animation: none;
+  }
+
+  .choose-option,
+  .choose-hint,
+  .beat-fade-enter-active,
+  .beat-fade-leave-active {
+    transition: none;
+  }
+}

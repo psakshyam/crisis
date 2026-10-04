@@ -2,15 +2,30 @@
   "id": "rohingya_crisis",
   "title": "Rohingya Muslim Crisis",
   "description": "Since August 2017, Rohingya Muslims in Myanmar have faced a campaign of targeted violence and structural discrimination that the United Nations views as a genocidal endeavor. Stripped of citizenship and excluded from the 2014 census, an estimated 3.5 million Rohingya have been displaced worldwide, with roughly 1.2 million sheltering in Bangladesh's Cox's Bazar — the world's largest refugee settlement. Policymakers must balance diplomatic pressure, humanitarian intervention, and refugee resettlement while navigating a crisis with no easy exits.",
+  "scene": {
+    "background": "/assets/scenes/backgrounds/office.webp"
+  },
   "characters": {
-    "international_analyst": {
-      "id": "international_analyst",
-      "name": "International Policy Analyst",
-      "role": "International Policy Advisor, Humanitarian Affairs",
-      "personality": "Measured, pragmatic, weighs moral urgency against long-term consequences",
+    "dr_elena": {
+      "id": "dr_elena",
+      "name": "Dr. Elena",
+      "role": "Senior Economist, Monetary Policy & Financial Stability Division",
+      "personality": "Analytical, cautious, haunted by uncertainty",
       "motivation": "Protect vulnerable populations while preserving diplomatic leverage for lasting solutions",
-      "image": "/assets/archetypes/analyst.png",
-      "opening_scene": "You review a briefing packet as a screen flickers with early reports of unrest in Myanmar. Rohingya Muslims are facing rising discrimination — and the room is waiting on your read of the situation. Your background in humanitarian policy gives you a framework, but this crisis spans diplomacy, human rights, and the fates of millions who have nowhere else to go. Every decision from here will define the response."
+      "image": "/assets/archetypes/drelena.png",
+      "opening_scene": "Elena reviews a briefing packet as a screen flickers with early reports of unrest in Myanmar. Rohingya Muslims are facing rising discrimination — and the room is waiting on her read of the situation. Her background in economic policy gives her a framework, but this crisis spans diplomacy, human rights, and the fates of millions who have nowhere else to go. Every decision from here will define the response.",
+      "art": {
+        "expressions": {
+          "neutral": "/assets/scenes/characters/elena/neutral.svg",
+          "frown": "/assets/scenes/characters/elena/frown.svg",
+          "worried": "/assets/scenes/characters/elena/worried.svg",
+          "sidelook": "/assets/scenes/characters/elena/sidelook.svg",
+          "smile": "/assets/scenes/characters/elena/smile.svg",
+          "talking": "/assets/scenes/characters/elena/talking.svg"
+        },
+        "standing": "/assets/scenes/characters/elena/standing.svg"
+      },
+      "mission": "Help Elena make the optimal decision."
     }
   },
   "stages": [
@@ -24,7 +39,7 @@
           "animation": "market-panic",
           "text": "Reports confirm rising tensions between Myanmar's government and the Rohingya Muslim minority. On-ground sources describe formal discrimination — and human rights that are not just ignored, but unrecognized.",
           "character_text": {
-            "international_analyst": "The reports on my desk are getting harder to read. Rohingya Muslims in Myanmar are facing formal discrimination, and their human rights aren't just being ignored — they're not being recognized at all. Everyone's looking at me for a call."
+            "dr_elena": "The reports on my desk are getting harder to read. Rohingya Muslims in Myanmar are facing formal discrimination, and their human rights aren't just being ignored — they're not being recognized at all. Everyone's looking at me for a call."
           },
           "fun_fact": "Rohingya living in Myanmar are required to carry identification cards designating them as non-citizen foreigners — they were excluded entirely from the 2014 national census.",
           "options": [
@@ -34,10 +49,10 @@
               "points": 1,
               "type": "Statement",
               "character_text": {
-                "international_analyst": "I put out a statement condemning the discrimination and human rights abuses outright."
+                "dr_elena": "I put out a statement condemning the discrimination and human rights abuses outright."
               },
               "character_feedback": {
-                "international_analyst": "My statement helps rally a coalition of countries to recognize Rohingya presence and rights. It's a meaningful step, but several multipolar powers stay out of it, and the solidarity I've built still feels far from the ground reality."
+                "dr_elena": "My statement helps rally a coalition of countries to recognize Rohingya presence and rights. It's a meaningful step, but several multipolar powers stay out of it, and the solidarity I've built still feels far from the ground reality."
               }
             },
             {
@@ -46,10 +61,10 @@
               "points": 2,
               "type": "Intervention",
               "character_text": {
-                "international_analyst": "I authorize small-scale, immediate humanitarian intervention — get people and resources on the ground now."
+                "dr_elena": "I authorize small-scale, immediate humanitarian intervention — get people and resources on the ground now."
               },
               "character_feedback": {
-                "international_analyst": "Humanitarian teams and peacekeepers reach people who need it. But Myanmar's government grows wary of international intervention, and I worry we've given them a reason to posture harder against the minority population."
+                "dr_elena": "Humanitarian teams and peacekeepers reach people who need it. But Myanmar's government grows wary of international intervention, and I worry we've given them a reason to posture harder against the minority population."
               }
             },
             {
@@ -58,10 +73,10 @@
               "points": 3,
               "type": "Quiet Preparation",
               "character_text": {
-                "international_analyst": "I hold back publicly, and quietly start pooling funds and coordinating with allies for whatever comes next."
+                "dr_elena": "I hold back publicly, and quietly start pooling funds and coordinating with allies for whatever comes next."
               },
               "character_feedback": {
-                "international_analyst": "My silence keeps most of the world quiet too. Awareness suffers, but I've built a reserve of aid and coordination that's ready the moment it's needed. Some of my colleagues think this is too passive — I think it's exactly right."
+                "dr_elena": "My silence keeps most of the world quiet too. Awareness suffers, but I've built a reserve of aid and coordination that's ready the moment it's needed. Some of my colleagues think this is too passive — I think it's exactly right."
               }
             },
             {
@@ -70,10 +85,10 @@
               "points": 4,
               "type": "Statement + Coordination",
               "character_text": {
-                "international_analyst": "I issue a public condemnation and immediately open coordination channels with Myanmar's neighbors."
+                "dr_elena": "I issue a public condemnation and immediately open coordination channels with Myanmar's neighbors."
               },
               "character_feedback": {
-                "international_analyst": "The statement lands, and my coordination with neighboring governments pays off — I've opened a real diplomatic channel with Bangladesh, who's committed to working toward humanitarian solutions. Key powers still stay strategically quiet, but I have something to build on."
+                "dr_elena": "The statement lands, and my coordination with neighboring governments pays off — I've opened a real diplomatic channel with Bangladesh, who's committed to working toward humanitarian solutions. Key powers still stay strategically quiet, but I have something to build on."
               }
             }
           ]
@@ -90,7 +105,7 @@
           "animation": "lockdown-grid",
           "text": "The Burmese government has launched a full-scale offensive on the Rohingya after separatist insurgent groups mounted attacks. Death tolls are rising quickly through the thousands, many among Rohingya Muslims. People are in need, and the window to act is closing.",
           "character_text": {
-            "international_analyst": "The war room screens are flashing red. The Burmese government has launched a full-scale offensive after insurgent attacks, and the death toll is climbing into the thousands. If we don't act now, I'm not sure when we could."
+            "dr_elena": "The war room screens are flashing red. The Burmese government has launched a full-scale offensive after insurgent attacks, and the death toll is climbing into the thousands. If we don't act now, I'm not sure when we could."
           },
           "fun_fact": "As part of the 2017 military operation, roughly 288 individual Rohingya villages were destroyed, and an estimated 7,000 people were killed in the first month alone.",
           "options": [
@@ -100,10 +115,10 @@
               "points": 1,
               "type": "Non-intervention",
               "character_text": {
-                "international_analyst": "I hold back from direct action and let existing channels run their course."
+                "dr_elena": "I hold back from direct action and let existing channels run their course."
               },
               "character_feedback": {
-                "international_analyst": "Staying quiet preserves my relationship with Myanmar's government and its allies. But it also means I've gone nearly silent on a humanitarian catastrophe unfolding in real time — and that sits heavy."
+                "dr_elena": "Staying quiet preserves my relationship with Myanmar's government and its allies. But it also means I've gone nearly silent on a humanitarian catastrophe unfolding in real time — and that sits heavy."
               }
             },
             {
@@ -112,10 +127,10 @@
               "points": 2,
               "type": "Economic Pressure",
               "character_text": {
-                "international_analyst": "I push for tariffs and embargoes against Myanmar's government."
+                "dr_elena": "I push for tariffs and embargoes against Myanmar's government."
               },
               "character_feedback": {
-                "international_analyst": "The sanctions hit hard at the top. But they complicate humanitarian access on the ground, and I'm not convinced economic pressure alone moves a government driven by ideology."
+                "dr_elena": "The sanctions hit hard at the top. But they complicate humanitarian access on the ground, and I'm not convinced economic pressure alone moves a government driven by ideology."
               }
             },
             {
@@ -124,10 +139,10 @@
               "points": 3,
               "type": "Humanitarian Funding",
               "character_text": {
-                "international_analyst": "I direct funding toward humanitarian relief for the persecuted population."
+                "dr_elena": "I direct funding toward humanitarian relief for the persecuted population."
               },
               "character_feedback": {
-                "international_analyst": "The funding makes a real difference on the ground — better services, better infrastructure. But it doesn't stop the offensive; it only makes surviving it more bearable."
+                "dr_elena": "The funding makes a real difference on the ground — better services, better infrastructure. But it doesn't stop the offensive; it only makes surviving it more bearable."
               }
             },
             {
@@ -136,10 +151,10 @@
               "points": 4,
               "type": "Refugee Pathways",
               "character_text": {
-                "international_analyst": "I combine humanitarian funding with the groundwork for refugee pathways out of Myanmar."
+                "dr_elena": "I combine humanitarian funding with the groundwork for refugee pathways out of Myanmar."
               },
               "character_feedback": {
-                "international_analyst": "It's a measured approach — funding relief now while planning exits for people who need them. It thinks beyond the present crisis, though I know we could still be investing harder in this moment."
+                "dr_elena": "It's a measured approach — funding relief now while planning exits for people who need them. It thinks beyond the present crisis, though I know we could still be investing harder in this moment."
               }
             }
           ]
@@ -156,7 +171,7 @@
           "animation": "stimulus-surge",
           "text": "Hundreds of thousands of refugees are fleeing persecution from Myanmar. It's time to decide what part your country will play in handling the influx.",
           "character_text": {
-            "international_analyst": "We're about to see hundreds of thousands of refugees flee persecution from Myanmar. It's time to decide whether we have a part to play in this."
+            "dr_elena": "We're about to see hundreds of thousands of refugees flee persecution from Myanmar. It's time to decide whether we have a part to play in this."
           },
           "fun_fact": "The refugee population in Cox's Bazar, Bangladesh has swelled to nearly 1.2 million people — the largest refugee settlement in the world.",
           "options": [
@@ -166,10 +181,10 @@
               "points": 1,
               "type": "Diplomacy",
               "character_text": {
-                "international_analyst": "I open direct diplomatic negotiations with Myanmar's government."
+                "dr_elena": "I open direct diplomatic negotiations with Myanmar's government."
               },
               "character_feedback": {
-                "international_analyst": "Talks open, but close quickly — neither side can agree on a middle ground. At least the situation hasn't gotten worse because of it."
+                "dr_elena": "Talks open, but close quickly — neither side can agree on a middle ground. At least the situation hasn't gotten worse because of it."
               }
             },
             {
@@ -178,10 +193,10 @@
               "points": 2,
               "type": "Open Borders",
               "character_text": {
-                "international_analyst": "I push to open our own borders to Rohingya refugees."
+                "dr_elena": "I push to open our own borders to Rohingya refugees."
               },
               "character_feedback": {
-                "international_analyst": "It's a substantive gesture, but logistics fight us the whole way — the distance from Myanmar and the lack of migration infrastructure make it hard to execute. Public opinion is mixed, though most understand why I made the call."
+                "dr_elena": "It's a substantive gesture, but logistics fight us the whole way — the distance from Myanmar and the lack of migration infrastructure make it hard to execute. Public opinion is mixed, though most understand why I made the call."
               }
             },
             {
@@ -190,10 +205,10 @@
               "points": 3,
               "type": "Regional Safe Havens",
               "character_text": {
-                "international_analyst": "I coordinate with Bangladesh's government to establish safe havens near the border."
+                "dr_elena": "I coordinate with Bangladesh's government to establish safe havens near the border."
               },
               "character_feedback": {
-                "international_analyst": "The safe havens give refugees a real place to go. But the concentration of arrivals overwhelms capacity fast — settlements are overcrowded and need far more funding than we planned for."
+                "dr_elena": "The safe havens give refugees a real place to go. But the concentration of arrivals overwhelms capacity fast — settlements are overcrowded and need far more funding than we planned for."
               }
             },
             {
@@ -202,10 +217,10 @@
               "points": 4,
               "type": "Host Country Network",
               "character_text": {
-                "international_analyst": "I build a coordinated network of host countries willing to share the responsibility."
+                "dr_elena": "I build a coordinated network of host countries willing to share the responsibility."
               },
               "character_feedback": {
-                "international_analyst": "Spreading refugees across a network of host countries genuinely improves living conditions. The coordination cost is steep, but of everything I could have done, this is the most pragmatic."
+                "dr_elena": "Spreading refugees across a network of host countries genuinely improves living conditions. The coordination cost is steep, but of everything I could have done, this is the most pragmatic."
               }
             }
           ]
@@ -222,7 +237,7 @@
           "animation": "vaccine-race",
           "text": "So many people are fleeing conflict, but there's so little to go around despite best efforts. Rohingya refugees are struggling in more ways than one — the funding strategy has to account for it.",
           "character_text": {
-            "international_analyst": "Our Bangladeshi counterparts keep telling me the same thing: so many people fleeing conflict, so little to go around. Rohingya refugees are struggling in more ways than one, and I need to make sure our funding accounts for that."
+            "dr_elena": "Our Bangladeshi counterparts keep telling me the same thing: so many people fleeing conflict, so little to go around. Rohingya refugees are struggling in more ways than one, and I need to make sure our funding accounts for that."
           },
           "fun_fact": "More than 235,000 children in Cox's Bazar remain out of school, and over 60% of the settlement's water supply has been found contaminated.",
           "options": [
@@ -232,10 +247,10 @@
               "points": 1,
               "type": "Transport",
               "character_text": {
-                "international_analyst": "I direct funding toward maximizing safe transport out of Myanmar."
+                "dr_elena": "I direct funding toward maximizing safe transport out of Myanmar."
               },
               "character_feedback": {
-                "international_analyst": "We rescue more people from the worst of it, but many arrive disoriented and unprepared — they've survived, but they're far from set up to thrive."
+                "dr_elena": "We rescue more people from the worst of it, but many arrive disoriented and unprepared — they've survived, but they're far from set up to thrive."
               }
             },
             {
@@ -244,10 +259,10 @@
               "points": 2,
               "type": "Cultural Services",
               "character_text": {
-                "international_analyst": "I put weight behind cultural and identity-affirming services for arriving refugees."
+                "dr_elena": "I put weight behind cultural and identity-affirming services for arriving refugees."
               },
               "character_feedback": {
-                "international_analyst": "After a genocide that stripped away identity at every turn, this choice helps people feel recognized and cared for. The material transition is still hard, but I think dignity matters here too."
+                "dr_elena": "After a genocide that stripped away identity at every turn, this choice helps people feel recognized and cared for. The material transition is still hard, but I think dignity matters here too."
               }
             },
             {
@@ -256,10 +271,10 @@
               "points": 3,
               "type": "Essential Services",
               "character_text": {
-                "international_analyst": "I direct the bulk of funding toward essential and welfare services."
+                "dr_elena": "I direct the bulk of funding toward essential and welfare services."
               },
               "character_feedback": {
-                "international_analyst": "It's the right call for immediate need, but the strain on those services never really eases, and refugees still struggle to adjust without the infrastructure to support them long-term."
+                "dr_elena": "It's the right call for immediate need, but the strain on those services never really eases, and refugees still struggle to adjust without the infrastructure to support them long-term."
               }
             },
             {
@@ -268,10 +283,10 @@
               "points": 4,
               "type": "Infrastructure",
               "character_text": {
-                "international_analyst": "I commit funding to building long-term infrastructure — housing, schools, clean water systems."
+                "dr_elena": "I commit funding to building long-term infrastructure — housing, schools, clean water systems."
               },
               "character_feedback": {
-                "international_analyst": "The infrastructure gives people a more secure future. I just know I've left room to improve on the more immediate, human side of refugee care."
+                "dr_elena": "The infrastructure gives people a more secure future. I just know I've left room to improve on the more immediate, human side of refugee care."
               }
             }
           ]
@@ -288,7 +303,7 @@
           "animation": "soft-landing",
           "text": "As conflict begins to stabilize, what protections are we prepared to extend to the new influx of refugees — and for how long is it possible to sustain them?",
           "character_text": {
-            "international_analyst": "The conflict is stabilizing, slightly. It's in our interest to keep supporting the refugees we've taken in — but for how long is this actually possible?"
+            "dr_elena": "The conflict is stabilizing, slightly. It's in our interest to keep supporting the refugees we've taken in — but for how long is this actually possible?"
           },
           "fun_fact": "An estimated 600,000 Rohingya remain in Myanmar's Rakhine State, where they continue to face a high risk of persecution and severe restrictions on their basic human rights.",
           "options": [
@@ -298,10 +313,10 @@
               "points": 1,
               "type": "Status Expiry",
               "character_text": {
-                "international_analyst": "I let protected status expire, trusting that conditions have stabilized enough."
+                "dr_elena": "I let protected status expire, trusting that conditions have stabilized enough."
               },
               "character_feedback": {
-                "international_analyst": "Things return to normal at home. But conditions in Myanmar haven't really stabilized — refugees sent back are thrust right into the vulnerability they fled."
+                "dr_elena": "Things return to normal at home. But conditions in Myanmar haven't really stabilized — refugees sent back are thrust right into the vulnerability they fled."
               }
             },
             {
@@ -310,10 +325,10 @@
               "points": 2,
               "type": "Permanent Residency",
               "character_text": {
-                "international_analyst": "I grant permanent residency to every settled refugee."
+                "dr_elena": "I grant permanent residency to every settled refugee."
               },
               "character_feedback": {
-                "international_analyst": "It's a permanent answer for the people we've already taken in, but resources strain under the influx, and others still waiting feel like their place in line was jumped."
+                "dr_elena": "It's a permanent answer for the people we've already taken in, but resources strain under the influx, and others still waiting feel like their place in line was jumped."
               }
             },
             {
@@ -322,10 +337,10 @@
               "points": 3,
               "type": "Status Extension",
               "character_text": {
-                "international_analyst": "I extend protected status rather than making permanent promises I can't yet keep."
+                "dr_elena": "I extend protected status rather than making permanent promises I can't yet keep."
               },
               "character_feedback": {
-                "international_analyst": "Nobody's sent back into danger, and I haven't overpromised. But refugees stay uneasy about their status, and my own service providers aren't sure how big to plan their operations."
+                "dr_elena": "Nobody's sent back into danger, and I haven't overpromised. But refugees stay uneasy about their status, and my own service providers aren't sure how big to plan their operations."
               }
             },
             {
@@ -334,10 +349,10 @@
               "points": 4,
               "type": "Proportionate Transition",
               "character_text": {
-                "international_analyst": "I transition status to permanent residency wherever infrastructure allows, and help others find pathways elsewhere."
+                "dr_elena": "I transition status to permanent residency wherever infrastructure allows, and help others find pathways elsewhere."
               },
               "character_feedback": {
-                "international_analyst": "It's the balance I was aiming for — the refugees we can support get a real, well-supported future, and I've done my best to open other doors for those we can't. It's not a perfect answer, but it gives people their best shot."
+                "dr_elena": "It's the balance I was aiming for — the refugees we can support get a real, well-supported future, and I've done my best to open other doors for those we can't. It's not a perfect answer, but it gives people their best shot."
               }
             }
           ]

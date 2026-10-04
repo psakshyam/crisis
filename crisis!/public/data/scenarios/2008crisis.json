@@ -2,6 +2,16 @@
   "id": "financial_2008",
   "title": "Global Financial Meltdown",
   "description": "The 2008 Financial Crisis happened when the U.S. housing market collapsed after many years of rising home prices and risky lending. Banks gave many people mortgages (loans used to buy homes) that they could not afford, and these loans were turned into complex financial products (investments created by banks that are bought and sold to make money). When home prices fell, many people could not repay their mortgages, causing large banks to fail and panic to spread worldwide. Because banks were closely connected, the problems quickly spread through the economy and led to a recession (a period when businesses slow down, many people lose jobs, and the economy shrinks). Governments stepped in with large bailouts to stabilize the financial system and reduce economic damage.",
+  "scene": {
+    "background": "/assets/scenes/backgrounds/office.webp"
+  },
+  "intro_beats": [
+    {
+      "layout": "card",
+      "title_from": "title",
+      "body_from": "description"
+    }
+  ],
   "characters": {
     "dr_elena": {
       "id": "dr_elena",
@@ -10,14 +20,119 @@
       "personality": "Analytical, cautious, haunted by uncertainty",
       "motivation": "Prevent collapse without overstepping institutional limits",
       "image": "/assets/archetypes/drelena.png",
-      "opening_scene": "Elena sits in a quiet office. A junior analyst walks in: \"Interbank rates are spiking… and repo lenders are questioning mortgage collateral.\" She pauses. This isn't supposed to happen. If this is just noise, intervention could cause panic. If it's real… we're already behind."
+      "opening_scene": "Elena sits in a quiet office. A junior analyst walks in: \"Interbank rates are spiking… and repo lenders are questioning mortgage collateral.\" She pauses. This isn't supposed to happen. If this is just noise, intervention could cause panic. If it's real… we're already behind.",
+      "art": {
+        "expressions": {
+          "neutral": "/assets/scenes/characters/elena/neutral.svg",
+          "frown": "/assets/scenes/characters/elena/frown.svg",
+          "worried": "/assets/scenes/characters/elena/worried.svg",
+          "sidelook": "/assets/scenes/characters/elena/sidelook.svg",
+          "smile": "/assets/scenes/characters/elena/smile.svg",
+          "talking": "/assets/scenes/characters/elena/talking.svg"
+        },
+        "standing": "/assets/scenes/characters/elena/standing.svg"
+      },
+      "mission": "Help Elena make the optimal decision.",
+      "profile": {
+        "name": "Elena",
+        "age": 39,
+        "occupation": "Senior Analyst @Central Bank's monetary and financial stability division",
+        "background": "Specializes in systemic risk",
+        "motivation": "Prevent collapse without overstepping institutional limits",
+        "conflict": "Knows more action is needed, but fears causing panic"
+      },
+      "opening_beats": [
+        {
+          "layout": "desk",
+          "expression": "neutral"
+        },
+        {
+          "layout": "desk",
+          "expression": "neutral",
+          "assistant": true,
+          "bubble": {
+            "style": "oval",
+            "tail": "right",
+            "text": "Interbank rates are spiking… and repo lenders are questioning mortgage collateral.",
+            "highlights": {
+              "spiking": "bad"
+            }
+          }
+        },
+        {
+          "layout": "close",
+          "expression": "talking"
+        },
+        {
+          "layout": "close",
+          "expression": "worried",
+          "bubble": {
+            "style": "banner",
+            "text": "This is not supposed to happen.",
+            "highlights": {
+              "not": "bad"
+            }
+          }
+        },
+        {
+          "layout": "desk",
+          "expression": "frown",
+          "bubble": {
+            "style": "rounded",
+            "text": "If this is just noise, intervention could cause panic.",
+            "highlights": {
+              "noise": "muted"
+            }
+          }
+        },
+        {
+          "layout": "desk",
+          "expression": "frown",
+          "bubble": {
+            "style": "rounded",
+            "text": "If this is just noise, intervention could cause panic.\nIf it's real, we are already behind.",
+            "highlights": {
+              "noise": "muted",
+              "real": "good"
+            }
+          }
+        },
+        {
+          "layout": "profile"
+        }
+      ]
     }
   },
   "stages": [
     {
       "stage_id": 1,
       "description": "Early Credit Market Stress (Mid-2007)",
+      "title": "The first cracks",
+      "period": "Mid-2007",
       "background_image": "stock_market_crash.png",
+      "intro_beats": [
+        {
+          "layout": "kitchen",
+          "caption": "Angela Rivera, a homeowner, signs mortgage paperwork.",
+          "bubble": {
+            "style": "oval",
+            "tail": "right",
+            "text": "They said rates might go up later, but I can refinance."
+          }
+        },
+        {
+          "layout": "office",
+          "props": ["laptop_interbank_chart", "paper_stack"],
+          "bubble": {
+            "style": "oval",
+            "tail": "none",
+            "text": "Interbank rates are rising... repo lenders are doubting mortgage collateral.",
+            "highlights": {
+              "rising": "bad"
+            }
+          }
+        }
+      ],
       "questions": [
         {
           "id": 1,
@@ -25,6 +140,11 @@
           "text": "Interbank lending rates rise unexpectedly. Reports indicate that repo lenders are questioning the value of mortgage-backed securities used as collateral.",
           "character_text": {
             "dr_elena": "I notice interbank lending rates rising unexpectedly. Reports cross my desk indicating that repo lenders are beginning to question the value of mortgage-backed securities being used as collateral."
+          },
+          "speech": false,
+          "prompt": "Interbank rates are rising... repo lenders are doubting mortgage collateral.",
+          "highlights": {
+            "rising": "bad"
           },
           "fun_fact": "In August 2007, BNP Paribas froze three funds after determining subprime assets could not be reliably valued—one of the first visible signals of systemic stress.",
           "options": [
@@ -83,6 +203,8 @@
     {
       "stage_id": 2,
       "description": "Wholesale Funding Freeze (Early 2008)",
+      "title": "Wholesale Funding Freeze",
+      "period": "Early 2008",
       "background_image": "stock_market_crash.png",
       "questions": [
         {
@@ -137,6 +259,8 @@
     {
       "stage_id": 3,
       "description": "Fiscal Policy Debate (Late 2008)",
+      "title": "Fiscal Policy Debate",
+      "period": "Late 2008",
       "background_image": "stock_market_crash.png",
       "questions": [
         {
@@ -194,6 +318,8 @@
     {
       "stage_id": 4,
       "description": "International Coordination (2009)",
+      "title": "International Coordination",
+      "period": "2009",
       "background_image": "stock_market_crash.png",
       "questions": [
         {
@@ -248,6 +374,7 @@
     {
       "stage_id": 5,
       "description": "Long-Term Institutional Response",
+      "title": "Long-Term Institutional Response",
       "background_image": "stock_market_crash.png",
       "questions": [
         {
@@ -256,6 +383,10 @@
           "text": "Markets stabilize, but public debt levels have risen. Structural vulnerabilities remain.",
           "character_text": {
             "dr_elena": "Markets begin to stabilize, but public debt levels have risen. I can still see structural vulnerabilities beneath the surface."
+          },
+          "highlights": {
+            "stabilize": "good",
+            "risen": "bad"
           },
           "fun_fact": "The crisis revealed that financial instruments were not inherently harmful—misaligned incentives and lack of transparency amplified risk.",
           "options": [
@@ -304,6 +435,7 @@
     {
       "min": 5,
       "max": 9,
+      "evaluation": "Poor",
       "title": "Scenario 1: Fragile/Crisis Escalates",
       "summary": "Liquidity support arrives too late or unevenly. Credit remains constrained. The economy recovers slowly, with repeated shocks. Institutions remain distrustful.",
       "character_reflection": {
@@ -314,6 +446,7 @@
     {
       "min": 10,
       "max": 13,
+      "evaluation": "Poor but repairable",
       "title": "Scenario 2: Strained but Recoverable",
       "summary": "Automatic stabilizers and limited intervention prevent full collapse. Recovery depends on external demand. Fiscal space narrows but remains manageable.",
       "character_reflection": {
@@ -324,6 +457,7 @@
     {
       "min": 14,
       "max": 17,
+      "evaluation": "Good but still needs improvements",
       "title": "Scenario 3: Stable with Trade-offs",
       "summary": "Liquidity and fiscal measures stabilize demand. Public debt increases, but growth resumes. Financial regulation becomes more robust.",
       "character_reflection": {
@@ -334,6 +468,7 @@
     {
       "min": 18,
       "max": 20,
+      "evaluation": "Strong",
       "title": "Scenario 4: Strong/Strategic Advantage",
       "summary": "Early intervention prevents prolonged contraction. Employment recovers faster. The country gains credibility in global markets. Institutions emerge more resilient.",
       "character_reflection": {

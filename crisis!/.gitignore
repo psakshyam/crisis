@@ -25,3 +25,9 @@ dist-ssr
 *.sln
 *.sw?
 **crisis-session05**
+# Design sources (storyboard, source art, mockups) stay local; the optimized
+# art the game uses lives in public/assets/scenes (scripts/optimize-scene-assets.cjs)
+design/
+
+# VPS-only build settings (live VITE_SERVER_URL)
+.env.production

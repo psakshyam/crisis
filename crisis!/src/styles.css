@@ -292,6 +292,41 @@ body {
   line-height: 1.6;
 }
 
+.concept-animation-card {
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.concept-animation-video {
+  display: block;
+  width: 100%;
+  max-height: 78vh;
+  border-radius: inherit;
+}
+
+.concept-animation-replay {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(26, 29, 31, 0.68);
+  color: #fff2de;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  z-index: 3;
+}
+
+.concept-animation-replay:hover {
+  background: rgba(26, 29, 31, 0.85);
+}
+
 .cutscene-kicker,
 .stage-intro-kicker {
   margin: 0 0 8px;

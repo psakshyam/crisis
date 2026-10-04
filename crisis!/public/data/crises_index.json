@@ -10,7 +10,7 @@
         "id": "dr_elena",
         "name": "Dr. Elena",
         "role": "Senior Economist, Central Bank",
-        "image": "/assets/archetypes/analyst.png"
+        "image": "/assets/archetypes/drelena.png"
       }
     ]
   },
@@ -19,13 +19,13 @@
     "title": "Rohingya Muslim Crisis",
     "summary": "Navigate diplomatic response, humanitarian intervention, and refugee policy amid targeted persecution in Myanmar.",
     "file_path": "/data/scenarios/rohingyaCrisis.json",
-    "default_character": "international_analyst",
+    "default_character": "dr_elena",
     "available_characters": [
       {
-        "id": "international_analyst",
-        "name": "International Policy Analyst",
-        "role": "International Policy Advisor, Humanitarian Affairs",
-        "image": "/assets/archetypes/analyst.png"
+        "id": "dr_elena",
+        "name": "Dr. Elena",
+        "role": "Senior Economist, Central Bank",
+        "image": "/assets/archetypes/drelena.png"
       }
     ]
   }
