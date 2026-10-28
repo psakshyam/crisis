@@ -26,7 +26,7 @@ const beats = computed(() => {
     : { layout: "office", bubble: { style: "oval", tail: "none", text: props.feedback } };
 
   const list = [outcome];
-  if (props.funFact) list.push({ layout: "announce", title: "Fun fact", body: props.funFact });
+  if (props.funFact) list.push({ layout: "announce", title: "Important fact", body: props.funFact });
   return list;
 });
 </script>
